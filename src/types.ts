@@ -14,3 +14,14 @@ export type NavLink =
       href: string;
       subLinks?: never;
     };
+
+export interface IUser {
+  _id: string;
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  photo?: string;
+  updatedAt: string;
+  createdAt: string;
+}
