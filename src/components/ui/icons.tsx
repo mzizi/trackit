@@ -7,6 +7,8 @@ import {
   ClipboardCheck,
   Copy,
   CreditCard,
+  EyeIcon,
+  EyeOffIcon,
   File,
   FileText,
   HelpCircle,
@@ -59,6 +61,8 @@ export const Icons = {
     </svg>
   ),
   close: X,
+  eyeOn: EyeIcon,
+  eyeOff: EyeOffIcon,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,

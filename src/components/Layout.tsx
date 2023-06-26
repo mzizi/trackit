@@ -1,8 +1,11 @@
-import { FC, ReactNode } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
-import type { NavLink } from "@/types";
+import { FC, ReactNode } from "react";
+import { ToastContainer } from "react-toastify";
+
 import Navbar from "@/components/Navbar";
 
+import type { NavLink } from "@/types";
 interface Props {
   links?: NavLink[];
   children: ReactNode;
@@ -21,6 +24,7 @@ const Layout: FC<Props> = ({ children, links }) => {
       <section className="flex flex-col justify-center flex-1 w-full h-full px-2 md:px-24">
         {children}
       </section>
+      <ToastContainer />
     </main>
   );
 };

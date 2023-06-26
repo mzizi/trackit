@@ -16,6 +16,8 @@ import {
 
 import type { NavLink } from "@/types";
 
+const genRandomID = () => crypto.randomUUID().split("-")[0];
+
 interface Props {
   links?: NavLink[];
 }
@@ -24,27 +26,30 @@ const Navbar: FC<Props> = ({ links = [] }) => {
   const [sideNav, setSideNav] = useState(false);
 
   return (
-    <div className="flex items-center justify-between px-6 md:gap-24">
-      <Link href="/" className="w-[100px] h-[20]">
-        <Image
-          width={100}
-          height={20}
-          alt="track it"
-          src="/logo.png"
-          className="object-cover w-full h-auto"
-        />
+    <div className="flex items-center justify-between px-6">
+      <Link href="/">
+        <div className="relative w-[9rem] h-[3rem]">
+          <Image
+            fill
+            priority
+            sizes="700"
+            alt="track it"
+            src="/logo.png"
+            className="object-cover h-auto"
+          />
+        </div>
       </Link>
-      <div className="flex-1 hidden w-max md:block">
+      <div className="self-end hidden md:justify-center md:gap-24 md:flex w-max">
         <NavigationMenu>
           <NavigationMenuList className="gap-4">
-            {links?.map((link, idx) => (
-              <NavigationMenuItem
-                key={`link-${Math.floor(Math.random() * idx)}`}
-              >
+            {links?.map((link) => (
+              <NavigationMenuItem key={`link-${genRandomID()}`}>
                 {link.subLinks ? (
                   <NavigationMenuTrigger
                     className={buttonVariants({
-                      variant: "ghost",
+                      variant: "link",
+                      className:
+                        "bg-inherit active:bg-purple-200 hover:bg-purple-200",
                     })}
                   >
                     {link.title}
@@ -53,7 +58,9 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                   <Link href={link.href} legacyBehavior passHref>
                     <NavigationMenuLink
                       className={buttonVariants({
-                        variant: "ghost",
+                        variant: "outline",
+                        className:
+                          "bg-inherit border-current hover:bg-purple-200",
                       })}
                     >
                       {link.title}
@@ -64,7 +71,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                   <div className="grid grid-cols-1 gap-2 p-6 w-[400px] ">
                     {link.subLinks?.map((sublink) => (
                       <ListItem
-                        key={sublink.href}
+                        key={`sublink-${genRandomID()}`}
                         href={sublink.href}
                         title={sublink.title}
                       >
@@ -77,73 +84,91 @@ const Navbar: FC<Props> = ({ links = [] }) => {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
-      <div className="relative self-end">
-        <Button
-          variant="outline"
-          onClick={() => setSideNav(true)}
-          className="flex p-0 text-lg border-current rounded aspect-square md:hidden"
-        >
-          <Icons.menu />
-        </Button>
-        {/* Mobile Nav */}
-        <aside
-          className={`${
-            sideNav ? "block" : "hidden"
-          } fixed top-0 bottom-0 left-0 z-50 w-[250px] rounded border border-neutral-300 bg-background transition-all`}
-        >
-          <div className="grid grid-cols-1 gap-4 p-6">
+
+        <div className="relative self-end">
+          <div className="flex items-center self-end gap-8">
+            <Link
+              href="/register"
+              className={buttonVariants({
+                variant: "outline",
+                className: "w-full",
+              })}
+            >
+              Register
+            </Link>
+            <Link
+              href="/login"
+              className={buttonVariants({ className: "w-full" })}
+            >
+              Login
+            </Link>
             <Button
               variant="outline"
-              onClick={() => setSideNav(false)}
-              className={`${
-                sideNav ? "bg-purple-100" : "bg-transparent"
-              } text-lg justify-self-end aspect-square p-0 rounded border-current`}
+              onClick={() => setSideNav(true)}
+              className="flex p-0 text-lg border-current rounded aspect-square md:hidden"
             >
-              <Icons.close />
+              <Icons.menu />
             </Button>
-            {links?.map((link, idx) => {
-              if (link.subLinks) {
-                return (
-                  <div
-                    className="grid w-full grid-cols-1 gap-4 py-2"
-                    key={`link- ${Math.floor(Math.random() * idx)}`}
-                  >
-                    <h2 className={buttonVariants({ className: "w-full" })}>
-                      {link.title}
-                    </h2>
-                    {link.subLinks.map((sublink) => (
-                      <Link
-                        key={sublink.href}
-                        href={sublink.href}
-                        className={buttonVariants({
-                          variant: "outline",
-                          className: "w-full h-max",
-                        })}
-                      >
-                        <div className="flex flex-col gap-1">
-                          <h3 className="font-semibold underline">
-                            {sublink.title}
-                          </h3>
-                          <p className="text-xs">{sublink.description}</p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                );
-              }
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={buttonVariants({ className: "w-full" })}
-                >
-                  {link.title}
-                </Link>
-              );
-            })}
           </div>
-        </aside>
+          {/* Mobile Nav */}
+          <aside
+            className={`${
+              sideNav ? "block" : "hidden"
+            } fixed top-0 bottom-0 left-0 z-50 w-[250px] rounded border border-neutral-300 bg-background transition-all`}
+          >
+            <div className="grid grid-cols-1 gap-4 p-6">
+              <Button
+                variant="outline"
+                onClick={() => setSideNav(false)}
+                className={`${
+                  sideNav ? "bg-purple-100" : "bg-transparent"
+                } text-lg justify-self-end aspect-square p-0 rounded border-current`}
+              >
+                <Icons.close />
+              </Button>
+              {links?.map((link) => {
+                if (link.subLinks) {
+                  return (
+                    <div
+                      className="grid w-full grid-cols-1 gap-4 py-2"
+                      key={`link-${genRandomID()}`}
+                    >
+                      <h2 className={buttonVariants({ className: "w-full" })}>
+                        {link.title}
+                      </h2>
+                      {link.subLinks.map((sublink) => (
+                        <Link
+                          key={`sublink-${genRandomID()}`}
+                          href={sublink.href}
+                          className={buttonVariants({
+                            variant: "outline",
+                            className: "w-full h-max",
+                          })}
+                        >
+                          <div className="flex flex-col gap-1">
+                            <h3 className="font-semibold underline">
+                              {sublink.title}
+                            </h3>
+                            <p className="text-xs">{sublink.description}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  );
+                }
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={buttonVariants({ className: "w-full" })}
+                  >
+                    {link.title}
+                  </Link>
+                );
+              })}
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
   );
