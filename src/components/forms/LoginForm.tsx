@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,7 +21,6 @@ import { Input } from "@/components/ui/input";
 import useStore from "@/store";
 import { IUser } from "@/types";
 import { trpc } from "@/utils/trpc";
-import Link from "next/link";
 
 const loginSchema = z.object({
   email: z
@@ -64,7 +64,7 @@ const LoginForm = () => {
         position: "top-right",
       });
       query.refetch();
-      router.push("/");
+      router.push("/app");
     },
     onError(error) {
       toast(error.message, {
@@ -93,9 +93,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="mx-auto w-[90%] shadow-md rounded-md border border-border bg-gray-100 h-max grid items-center">
-      <div className="container flex flex-col justify-center gap-16 p-12">
-        <h1 className="text-3xl">Sign in to your account</h1>
+    <div className="grid items-center w-3/4 mx-auto border rounded-md shadow-md h-max border-border">
+      <div className="container flex flex-col justify-center gap-10 p-8">
+        <h1 className="text-xl font-semibold">Sign in to your account</h1>
         <Form {...form}>
           <form
             className="flex flex-col flex-1 w-full gap-4"
@@ -121,10 +121,10 @@ const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <div className="relative">
+                    <div className="relative z-0">
                       <Input
                         {...field}
-                        className="px-4"
+                        className="z-0 px-4"
                         placeholder={
                           pwdVisible ? "strongPword123" : "xxxxxxxxxxxx"
                         }
@@ -146,10 +146,13 @@ const LoginForm = () => {
               )}
             />
 
-            <div className="flex items-center justify-end w-full">
+            <div className="flex items-center justify-end w-full py-2">
               <Link
                 href="/register"
-                className={buttonVariants({ variant: "link" })}
+                className={buttonVariants({
+                  variant: "link",
+                  className: "text-indigo-800 dark:text-indigo-200",
+                })}
               >
                 New around here ?&nbsp;
                 <span className="font-semibold capitalize">Register</span>

@@ -6,13 +6,13 @@ export const navLinks: NavLink[] = [
     subLinks: [
       {
         title: "API Documentation",
-        href: "/api/docs",
-        description: "View this project's github repository",
+        href: "/api-doc",
+        description: "View Swagger documentation for API",
       },
       {
         title: "View on Github",
         href: "https://github.com/rodgersgitau/trackit",
-        description: "View this project's github repository",
+        description: "View github repository",
       },
     ],
   },
