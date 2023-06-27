@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -16,10 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
-import useStore from "@/store";
-import { IUser } from "@/types";
 import { trpc } from "@/utils/trpc";
-import Link from "next/link";
 
 const registerSchema = z
   .object({
@@ -28,7 +26,6 @@ const registerSchema = z
       .string()
       .min(1, "Email address is required")
       .email("Email Address is invalid"),
-    photo: z.string().min(1, "Photo is required"),
     password: z
       .string()
       .min(1, "Password is required")
@@ -45,28 +42,22 @@ export type IRegisterInput = z.TypeOf<typeof registerSchema>;
 
 const RegisterForm = () => {
   const router = useRouter();
-  const store = useStore();
 
   const [pwdVisible, setPwdVisible] = useState(false);
 
   const form = useForm<IRegisterInput>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
       passwordConfirm: "",
     },
   });
 
-  const query = trpc.getMe.useQuery(undefined, {
-    enabled: false,
-    onSuccess: (data) => {
-      store.setAuthUser(data.data.user as unknown as IUser);
-    },
-  });
-
   const { isLoading, mutate: registerUser } = trpc.registerUser.useMutation({
     onSuccess(data) {
+      console.log({ data });
       toast(`Welcome ${data.data.user.name}!`, {
         type: "success",
         position: "top-right",
@@ -100,9 +91,11 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="mx-auto w-[90%] shadow-md rounded-md border border-border bg-gray-100 h-max grid items-center">
-      <div className="container flex flex-col justify-center gap-8 p-8">
-        <h1 className="text-3xl">Sign up for your account</h1>
+    <div className="grid items-center w-3/4 mx-auto border rounded-md shadow-md h-max border-border">
+      <div className="container flex flex-col justify-center gap-10 p-8">
+        <h1 className="font-sans text-xl font-semibold">
+          Sign up for a new account
+        </h1>
         <Form {...form}>
           <form
             className="flex flex-col flex-1 w-full gap-4"
@@ -141,14 +134,14 @@ const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <div className="relative">
+                    <div className="relative z-0">
                       <Input
-                        {...field}
                         className="px-4"
                         placeholder={
                           pwdVisible ? "strongPword123" : "xxxxxxxxxxxx"
                         }
                         type={pwdVisible ? "text" : "password"}
+                        {...field}
                       />
                       <Button
                         variant="outline"
@@ -172,14 +165,14 @@ const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <div className="relative">
+                    <div className="relative z-0">
                       <Input
-                        {...field}
                         className="px-4"
                         placeholder={
                           pwdVisible ? "strongPword123" : "xxxxxxxxxxxx"
                         }
                         type={pwdVisible ? "text" : "password"}
+                        {...field}
                       />
                       <Button
                         variant="outline"
@@ -197,10 +190,14 @@ const RegisterForm = () => {
               )}
             />
 
-            <div className="flex items-center justify-end w-full">
+            <div className="flex items-center justify-end w-full py-2">
               <Link
                 href="/login"
-                className={buttonVariants({ variant: "link" })}
+                type="button"
+                className={buttonVariants({
+                  variant: "link",
+                  className: "text-indigo-800 dark:text-indigo-200",
+                })}
               >
                 Already have an account ?&nbsp;
                 <span className="font-semibold capitalize">Login</span>

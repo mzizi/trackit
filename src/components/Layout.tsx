@@ -14,14 +14,11 @@ interface Props {
 const Layout: FC<Props> = ({ children, links }) => {
   return (
     <main className="flex flex-col min-h-screen gap-4">
-      <nav
-        style={{ background: "var(--gradient)" }}
-        className="sticky inset-0 w-full h-full py-4 border-b-2 md:px-24 border-b-border"
-      >
+      <nav className="sticky inset-0 w-full h-full py-4 border-b-2  bg-accent lg:px-24 border-b-border">
         <Navbar links={links} />
       </nav>
 
-      <section className="flex flex-col justify-center flex-1 w-full h-full px-2 md:px-24">
+      <section className="flex flex-col justify-center flex-1 w-full px-2 lg:px-24">
         {children}
       </section>
       <ToastContainer />
