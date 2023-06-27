@@ -7,7 +7,7 @@ import { NextPageWithLayout } from "./_app";
 
 const LoginPage: NextPageWithLayout = () => {
   return (
-    <div className="container grid w-full h-[75vh] grid-cols-1 gap-10 lg:grid-cols-2">
+    <div className="w-full lg:container grid h-[75vh] grid-cols-1 gap-10 lg:grid-cols-2">
       <div className="hidden lg:flex lg:items-center lg:justify-center">
         <Banner />
       </div>
