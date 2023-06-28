@@ -1,18 +1,19 @@
 import "@/styles/globals.css";
 
-import DefaultLayout from "@/components/Layout";
-import { navLinks } from "@/config";
-import { trpc } from "@/utils/trpc";
-
+import type { NextPage } from "next";
 import type { AppProps, AppType } from "next/app";
 import type { ReactElement, ReactNode } from "react";
 
-import type { NextPage } from "next";
+import AppLayout from "@/components/layouts/AppLayout";
+import DefaultLayout from "@/components/layouts/DefaultLayout";
+import { navLinks } from "@/config";
+import { trpc } from "@/utils/trpc";
 
 export type NextPageWithLayout<
   TProps = Record<string, unknown>,
   TInitialProps = TProps
 > = NextPage<TProps, TInitialProps> & {
+  layout?: "default" | "app";
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -21,9 +22,16 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const MyApp = (({ Component, pageProps }: AppPropsWithLayout) => {
+  const layout = Component.layout || "default";
   const getLayout =
     Component.getLayout ??
-    ((page) => <DefaultLayout links={navLinks}>{page}</DefaultLayout>);
+    ((page) => {
+      if (layout === "app") {
+        return <AppLayout>{page}</AppLayout>;
+      } else {
+        return <DefaultLayout links={navLinks}>{page}</DefaultLayout>;
+      }
+    });
 
   return getLayout(<Component {...pageProps} />);
 }) as AppType;
