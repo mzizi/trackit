@@ -1,8 +1,7 @@
 import { trpc } from "@/utils/trpc";
+import { NextPageWithLayout } from "../_app";
 
-import type { NextPageWithLayout } from "@/pages/_app";
-
-const DashboardPage: NextPageWithLayout = () => {
+const DashboardPage: NextPageWithLayout = (props) => {
   const query = trpc.getMe.useQuery();
   const data = query.data?.data;
 
@@ -13,5 +12,7 @@ const DashboardPage: NextPageWithLayout = () => {
     </div>
   );
 };
+
+DashboardPage.layout = "app";
 
 export default DashboardPage;
