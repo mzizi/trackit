@@ -1,5 +1,6 @@
 import { trpc } from "@/utils/trpc";
 import { NextPageWithLayout } from "../_app";
+import { GetServerSideProps } from "next";
 
 const DashboardPage: NextPageWithLayout = (props) => {
   const query = trpc.getMe.useQuery();
@@ -14,5 +15,14 @@ const DashboardPage: NextPageWithLayout = (props) => {
 };
 
 DashboardPage.layout = "app";
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   return {
+//     props: {
+//       requireAuth: true,
+//       enableAuth: false,
+//     },
+//   };
+// };
 
 export default DashboardPage;
