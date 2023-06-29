@@ -1,13 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 import { ReactNode, useMemo, useState } from "react";
 
 import Sidebar from "@/components/Sidebar";
-import { Icons } from "@/components/ui/icons";
-import { Button } from "@/components/ui/button";
 import Topbar from "@/components/Topbar";
+import { appLinks } from "@/config";
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(true);
 
   const styles = useMemo(() => {
     const base = {
@@ -29,7 +27,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
     <main className="relative flex w-full h-full min-h-screen">
       <aside className={styles.aside}>
-        <Sidebar collapsed={!openSidebar} />
+        <Sidebar collapsed={!openSidebar} links={appLinks} />
       </aside>
       <section className={styles.content}>
         <Topbar collapseSidebar={setOpenSidebar} />

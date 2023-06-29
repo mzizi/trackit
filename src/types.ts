@@ -1,17 +1,23 @@
-interface Link {
+import { ReactNode } from "react";
+
+export interface LinkType {
   title: string;
   href: string;
+  icon?: ReactNode;
   description?: string;
 }
 
-export type NavLink =
+export type INavLink =
   | {
       title: string;
-      subLinks: Link[];
+      href?: never;
+      icon?: ReactNode;
+      subLinks: LinkType[];
     }
   | {
       title: string;
       href: string;
+      icon?: ReactNode;
       subLinks?: never;
     };
 

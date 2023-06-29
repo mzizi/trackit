@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import useStore from "@/store";
 import { IUser } from "@/types";
 import { trpc } from "@/utils/trpc";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const loginSchema = z.object({
   email: z
@@ -64,7 +65,7 @@ const LoginForm = () => {
         position: "top-right",
       });
       query.refetch();
-      router.push("/app");
+      router.push("/dashboard/");
     },
     onError(error) {
       toast(error.message, {
@@ -136,7 +137,7 @@ const LoginForm = () => {
                         className="p-0 absolute top-[50%] translate-y-[-50%] rounded-md flex items-center justify-center right-2"
                       >
                         <div className="w-10 p-2 text-lg aspect-square">
-                          {pwdVisible ? <Icons.eyeOn /> : <Icons.eyeOff />}
+                          {pwdVisible ? <EyeIcon /> : <EyeOffIcon />}
                         </div>
                       </Button>
                     </div>
