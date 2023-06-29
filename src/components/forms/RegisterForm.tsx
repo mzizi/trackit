@@ -18,6 +18,7 @@ import {
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/utils/trpc";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const registerSchema = z
   .object({
@@ -149,7 +150,7 @@ const RegisterForm = () => {
                         className="p-0 absolute top-[50%] translate-y-[-50%] rounded-md flex items-center justify-center right-2"
                       >
                         <div className="w-10 p-2 text-lg aspect-square">
-                          {pwdVisible ? <Icons.eyeOn /> : <Icons.eyeOff />}
+                          {pwdVisible ? <EyeIcon /> : <EyeOffIcon />}
                         </div>
                       </Button>
                     </div>
@@ -180,7 +181,7 @@ const RegisterForm = () => {
                         className="p-0 absolute top-[50%] translate-y-[-50%] rounded-md flex items-center justify-center right-2"
                       >
                         <div className="w-10 p-2 text-lg aspect-square">
-                          {pwdVisible ? <Icons.eyeOn /> : <Icons.eyeOff />}
+                          {pwdVisible ? <EyeIcon /> : <EyeOffIcon />}
                         </div>
                       </Button>
                     </div>

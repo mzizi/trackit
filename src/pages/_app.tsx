@@ -6,6 +6,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import AppLayout from "@/components/layouts/AppLayout";
 import DefaultLayout from "@/components/layouts/DefaultLayout";
+
 import { navLinks } from "@/config";
 import { trpc } from "@/utils/trpc";
 

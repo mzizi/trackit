@@ -1,92 +1,72 @@
-import {
-  AlertTriangle,
-  AnchorIcon,
-  ArrowRight,
-  BanknoteIcon,
-  Bell,
-  Building,
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  ClipboardCheck,
-  Copy,
-  CreditCard,
-  Currency,
-  DollarSign,
-  EyeIcon,
-  EyeOffIcon,
-  File,
-  FileText,
-  HelpCircle,
-  Home,
-  Image,
-  Laptop,
-  Loader2,
-  LucideProps,
-  Menu,
-  Moon,
-  MoreVertical,
-  Pizza,
-  Plus,
-  Search,
-  Settings,
-  ShipIcon,
-  ShoppingBag,
-  Store,
-  StoreIcon,
-  SunMedium,
-  Trash,
-  TruckIcon,
-  Twitter,
-  User,
-  UserSquare2,
-  X,
-} from "lucide-react";
+import { LucideProps } from "lucide-react";
 
 import type { Icon as LucideIcon } from "lucide-react";
 
 export type Icon = LucideIcon;
 
 export const Icons = {
-  add: Plus,
-  arrowRight: ArrowRight,
-  bell: Bell,
-  billing: CreditCard,
-  building: Building,
-  check: Check,
-  chevronDown: ChevronDown,
-  chevronLeft: ChevronLeft,
-  chevronRight: ChevronRight,
-  chevronUp: ChevronUp,
-  close: X,
-  copy: Copy,
-  copyDone: ClipboardCheck,
-  ellipsis: MoreVertical,
-  eyeOff: EyeOffIcon,
-  eyeOn: EyeIcon,
-  help: HelpCircle,
-  home: Home,
-  laptop: Laptop,
-  media: Image,
-  menu: Menu,
-  moon: Moon,
-  page: File,
-  people: UserSquare2,
-  pizza: Pizza,
-  post: FileText,
-  purchase: BanknoteIcon,
-  search: Search,
-  settings: Settings,
-  shipment: TruckIcon,
-  spinner: Loader2,
-  store: Store,
-  sun: SunMedium,
-  trash: Trash,
-  twitter: Twitter,
-  user: User,
-  warning: AlertTriangle,
+  logoIcon: (props: LucideProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" {...props}>
+      <g fill="currentColor" transform="translate(0,120) scale(0.1,-0.10)">
+        <path
+          d="M399 917 c-21 -8 -9 -15 100 -58 110 -45 162 -54 161 -31 0 4 -54 28
+-119 53 -93 36 -123 44 -142 36z"
+        />
+        <path
+          d="M299 878 c-21 -9 -10 -15 100 -59 77 -31 130 -47 143 -43 29 9 15 17
+-108 67 -87 35 -115 42 -135 35z"
+        />
+        <path
+          d="M188 833 c-31 -8 -20 -17 50 -44 37 -15 90 -36 117 -47 37 -15 56
+-17 75 -10 23 9 15 14 -84 54 -126 50 -135 53 -158 47z"
+        />
+        <path
+          d="M580 757 c-69 -28 -130 -56 -137 -63 -9 -8 -11 -55 -10 -160 l2 -149
+134 -57 c74 -32 136 -58 138 -58 2 0 3 69 3 154 l0 154 -30 12 c-41 17 -33 22
+10 7 l35 -12 -3 -158 -3 -157 38 15 c21 9 82 34 136 57 l97 41 0 155 c0 133
+-2 153 -15 148 -39 -16 -47 -16 -20 0 l29 17 -122 48 c-67 26 -130 50 -139 52
+-10 3 -74 -18 -143 -46z m280 -49 l25 -10 -26 -14 c-24 -12 -33 -11 -90 12
+-35 15 -75 31 -89 36 l-25 10 30 12 c26 11 38 9 90 -12 33 -13 71 -29 85 -34z
+m-170 -18 c41 -17 76 -32 78 -34 2 -3 -9 -11 -25 -19 -26 -13 -34 -12 -112 21
+-74 32 -81 37 -65 49 26 19 43 17 124 -17z m-162 -25 c24 -10 41 -19 39 -22
+-3 -2 -29 8 -58 22 -59 27 -50 28 19 0z m382 -5 c-8 -5 -19 -10 -25 -10 -5 0
+-3 5 5 10 8 5 20 10 25 10 6 0 3 -5 -5 -10z m-290 -35 c14 -8 21 -14 15 -14
+-5 0 -21 6 -35 14 -14 8 -20 14 -15 14 6 0 21 -6 35 -14z m-44 -34 l89 -38 3
+-107 c1 -58 -1 -106 -5 -106 -4 0 -47 16 -95 36 l-88 37 0 108 c0 60 1 109 3
+109 2 0 44 -17 93 -39z m219 19 c-22 -10 -44 -18 -50 -18 -5 0 8 8 30 19 22
+10 45 18 50 18 6 0 -8 -9 -30 -19z m155 -87 l0 -108 -78 -32 c-42 -18 -85 -35
+-94 -39 -16 -6 -18 3 -18 100 l0 107 33 14 c29 12 32 12 35 -5 3 -15 7 -16 27
+-6 14 6 25 19 25 29 0 14 41 43 68 47 1 0 2 -48 2 -107z"
+        />
+        <path d="M886 524 c-3 -9 -3 -20 0 -25 8 -13 34 9 34 27 0 19 -26 18 -34 -2z" />
+        <path d="M820 495 c-10 -12 -9 -16 5 -21 16 -6 34 9 35 29 0 13 -27 8 -40 -8z" />
+        <path
+          d="M907 466 c-24 -37 -61 -53 -82 -36 -8 7 -19 10 -23 6 -12 -12 31 -37
+52 -30 29 8 79 59 74 74 -2 8 -11 2 -21 -14z"
+        />
+        <path
+          d="M159 737 c8 -21 40 -38 189 -96 l53 -21 -3 21 c-2 16 -21 29 -78 51
+-41 17 -96 38 -122 49 l-47 18 8 -22z"
+        />
+        <path
+          d="M217 631 c3 -11 25 -27 56 -39 29 -11 69 -28 90 -37 38 -16 38 -16
+35 6 -2 16 -22 29 -87 55 -99 40 -101 40 -94 15z"
+        />
+        <path
+          d="M290 527 c0 -19 15 -30 68 -50 41 -16 42 -16 42 3 0 13 -11 25 -33
+34 -63 26 -77 28 -77 13z"
+        />
+      </g>
+    </svg>
+  ),
+
+  logoIsolated: (props: LucideProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78 16" {...props}>
+      <g fill="currentColor">
+        <path d="M7.67 4.31L0.21 4.31L0.21 5.67L3.18 5.67L3.18 14L4.70 14L4.70 5.67L7.67 5.67ZM9.20 8.72L9.20 7.11L7.77 7.11L7.77 14L9.20 14L9.20 10.60C9.20 9.18 10.19 8.34 11.79 8.34L11.79 6.93C10.57 6.93 9.66 7.59 9.20 8.72ZM18.14 7.11L18.14 8.11C17.54 7.41 16.66 6.99 15.64 6.99C13.69 6.99 12.26 8.48 12.26 10.56C12.26 12.63 13.69 14.13 15.64 14.13C16.66 14.13 17.54 13.71 18.14 13.01L18.14 14L19.57 14L19.57 7.11ZM15.93 12.88C14.66 12.88 13.73 11.91 13.73 10.56C13.73 9.21 14.66 8.23 15.93 8.23C17.22 8.23 18.14 9.21 18.14 10.56C18.14 11.91 17.22 12.88 15.93 12.88ZM28.20 11.14L26.75 11.14C26.54 12.15 25.69 12.88 24.61 12.88C23.32 12.88 22.40 11.91 22.40 10.56C22.40 9.21 23.32 8.23 24.61 8.23C25.68 8.23 26.54 8.97 26.74 9.97L28.20 9.97C27.99 8.25 26.49 6.99 24.61 6.99C22.48 6.99 20.93 8.48 20.93 10.56C20.93 12.63 22.48 14.13 24.61 14.13C26.49 14.13 27.99 12.88 28.20 11.14ZM35.57 7.11L33.88 7.11L30.95 10.19L30.95 4.31L29.53 4.31L29.53 14L30.95 14L30.95 10.65L33.88 14L35.57 14L32.40 10.40ZM38.36 5.25C38.36 4.75 37.98 4.41 37.45 4.41C36.90 4.41 36.54 4.75 36.54 5.25C36.54 5.74 36.90 6.09 37.45 6.09C37.98 6.09 38.36 5.74 38.36 5.25ZM36.74 7.11L36.74 14L38.16 14L38.16 7.11ZM43.57 7.11L42.01 7.11L42.01 5.33L40.57 5.33L40.57 7.11L39.30 7.11L39.30 8.32L40.57 8.32L40.57 14L42.01 14L42.01 8.32L43.57 8.32Z"></path>
+      </g>
+    </svg>
+  ),
 
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>

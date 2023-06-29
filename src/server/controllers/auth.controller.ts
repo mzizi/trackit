@@ -1,3 +1,10 @@
+import bcrypt from "bcryptjs";
+import { getCookie, setCookie } from "cookies-next";
+import { OptionsType } from "cookies-next/lib/types";
+import { TRPCError } from "@trpc/server";
+
+import customConfig from "@/server/config/default";
+import { Context } from "@/server/createContext";
 import { CreateUserInput, LoginUserInput } from "@/server/schema/user.schema";
 import {
   createUser,
@@ -5,15 +12,8 @@ import {
   findUser,
   signTokens,
 } from "@/server/services/user.service";
-import { getCookie, setCookie } from "cookies-next";
-import { signJwt, verifyJwt } from "@/server/utils/jwt";
-
-import { Context } from "@/server/createContext";
-import { OptionsType } from "cookies-next/lib/types";
-import { TRPCError } from "@trpc/server";
-import bcrypt from "bcryptjs";
-import customConfig from "@/server/config/default";
 import redisClient from "@/server/utils/connectRedis";
+import { signJwt, verifyJwt } from "@/server/utils/jwt";
 
 // [...] Cookie options
 const cookieOptions: OptionsType = {

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
+import { MenuIcon, XIcon } from "lucide-react";
 
+import NavbarAuth from "@/components/NavbarAuth";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Icons } from "@/components/ui/icons";
 import { ListItem } from "@/components/ui/list-item";
 import {
   NavigationMenu,
@@ -14,13 +15,11 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-import type { NavLink } from "@/types";
-import NavbarAuth from "./NavbarAuth";
+import { genRandomID } from "@/utils";
 
-const genRandomID = () => crypto.randomUUID().split("-")[0];
-
+import type { INavLink } from "@/types";
 interface Props {
-  links?: NavLink[];
+  links?: INavLink[];
 }
 
 const Navbar: FC<Props> = ({ links = [] }) => {
@@ -93,7 +92,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
             onClick={() => setSideNav((prev) => !prev)}
             className="flex p-0 text-lg border-current rounded md:hidden aspect-square"
           >
-            {sideNav ? <Icons.close /> : <Icons.menu />}
+            {sideNav ? <XIcon /> : <MenuIcon />}
           </Button>
         </div>
         {/* Mobile Nav */}
@@ -111,7 +110,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                 onClick={() => setSideNav(false)}
                 className={`text-lg aspect-square !p-0 rounded-full`}
               >
-                <Icons.close />
+                <XIcon />
               </Button>
             </div>
             {links?.map((link) => {
@@ -125,7 +124,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                       {link.title}
                     </strong>
                     <div className="flex flex-col flex-1 w-full gap-4 py-4 ">
-                      {link.subLinks.map((sublink) => (
+                      {link?.subLinks.map((sublink) => (
                         <Link
                           key={`sublink-${genRandomID()}`}
                           href={sublink.href}
