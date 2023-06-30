@@ -1,5 +1,16 @@
 import { ReactNode } from "react";
 
+export type VariantType =
+  | "link"
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "accent"
+  | "ghost"
+  | null
+  | undefined;
+
 export interface LinkType {
   title: string;
   href: string;
@@ -20,6 +31,12 @@ export type INavLink =
       icon?: ReactNode;
       subLinks?: never;
     };
+
+export interface IAppSetting {
+  title: string;
+  variant: VariantType;
+  icon: JSX.Element;
+}
 
 export interface IUser {
   _id: string;

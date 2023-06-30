@@ -65,7 +65,7 @@ const LoginForm = () => {
         position: "top-right",
       });
       query.refetch();
-      router.push("/dashboard/");
+      router.push("/app");
     },
     onError(error) {
       toast(error.message, {
