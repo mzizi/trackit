@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, useMemo, useState } from "react";
 
 import Sidebar from "@/components/Sidebar";
@@ -28,9 +30,9 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     <main className="relative flex w-full h-full min-h-screen">
       <aside className={styles.aside}>
         <Sidebar
-          collapsed={!openSidebar}
           links={appLinks}
           settings={appSettings}
+          collapsed={openSidebar ? false : true}
         />
       </aside>
       <section className={styles.content}>

@@ -47,11 +47,11 @@ export const appLinks: INavLink[] = [
       {
         title: "Overview",
         icon: <GaugeIcon />,
-        href: "/app/store",
+        href: "/dashboard/store",
       },
       {
         title: "Stocked Items",
-        href: "/app/store/list",
+        href: "/dashboard/store/list",
         icon: <ListIcon />,
       },
     ],
@@ -63,11 +63,11 @@ export const appLinks: INavLink[] = [
       {
         title: "Overview",
         icon: <GaugeIcon />,
-        href: "/app/purchase",
+        href: "/dashboard/purchase",
       },
       {
         title: "Requested Items",
-        href: "/app/purchase/list",
+        href: "/dashboard/purchase/list",
         icon: <ListIcon />,
       },
     ],
@@ -79,11 +79,11 @@ export const appLinks: INavLink[] = [
       {
         title: "Overview",
         icon: <GaugeIcon />,
-        href: "/app/payment",
+        href: "/dashboard/payment",
       },
       {
         title: "Payment Items",
-        href: "/app/payment/list",
+        href: "/dashboard/payment/list",
         icon: <ListIcon />,
       },
     ],
@@ -95,11 +95,11 @@ export const appLinks: INavLink[] = [
       {
         title: "Overview",
         icon: <GaugeIcon />,
-        href: "/app/delivery",
+        href: "/dashboard/delivery",
       },
       {
         title: "Tracking",
-        href: "/app/delivery/tracking",
+        href: "/dashboard/delivery/tracking",
         icon: <MapIcon />,
       },
     ],
@@ -117,9 +117,9 @@ export const appSettings: IAppSetting[] = [
     variant: "accent",
     icon: <SettingsIcon />,
   },
-  {
-    title: "Log Out",
-    variant: "destructive",
-    icon: <LogOutIcon />,
-  },
+  // {
+  //   title: "Log Out",
+  //   variant: "destructive",
+  //   icon: <LogOutIcon />,
+  // },
 ];

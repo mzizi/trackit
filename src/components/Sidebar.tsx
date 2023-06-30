@@ -1,6 +1,8 @@
+"use client";
+
 import Link from "next/link";
-// import { useRouter } from "next/router";
 import { FC, useMemo } from "react";
+import { SignOutButton } from "@clerk/nextjs";
 
 import {
   Accordion,
@@ -20,20 +22,15 @@ import {
 import { Icons } from "@/components/ui/icons";
 import { IAppSetting, INavLink } from "@/types";
 import { genRandomID } from "@/utils";
+import { LogOutIcon } from "lucide-react";
 
 interface Props {
-  user?: {
-    name: string;
-    avatar?: string;
-  };
   links?: INavLink[];
   settings?: IAppSetting[];
   collapsed: boolean;
 }
 
-const Sidebar: FC<Props> = ({ collapsed, links, user, settings }) => {
-  // const router = useRouter();
-
+const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
   const styles = useMemo(() => {
     const col = "w-full grid grid-cols-[1fr,_4fr] gap-4 text-left text-sm";
     const row =
@@ -191,6 +188,22 @@ const Sidebar: FC<Props> = ({ collapsed, links, user, settings }) => {
             {!collapsed && <span className="flex-1">{setting.title}</span>}
           </Button>
         ))}
+        <SignOutButton>
+          <div
+            className={buttonVariants({
+              variant: "destructive",
+              size: collapsed ? "icon" : "default",
+              className: `${
+                collapsed ? "px-0 text-center" : "text-left px-4"
+              } flex items-center w-full gap-4`,
+            })}
+          >
+            <span className="text-sm aspect-square">
+              <LogOutIcon />
+            </span>
+            {!collapsed && <span className="flex-1">Sign Out</span>}
+          </div>
+        </SignOutButton>
       </div>
     </div>
   );

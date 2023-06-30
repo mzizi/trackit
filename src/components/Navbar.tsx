@@ -1,7 +1,7 @@
+import { MenuIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
-import { MenuIcon, XIcon } from "lucide-react";
 
 import NavbarAuth from "@/components/NavbarAuth";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -14,7 +14,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-
 import { genRandomID } from "@/utils";
 
 import type { INavLink } from "@/types";
@@ -136,7 +135,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                     </div>
                     <div className="self-end">
                       <Link
-                        href="/register"
+                        href="/sign-up"
                         className={buttonVariants({
                           variant: "outline",
                           className: "text-sm w-full",
@@ -145,7 +144,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                         Register
                       </Link>
                       <Link
-                        href="/login"
+                        href="/sign-in"
                         className={buttonVariants({
                           className: "text-sm w-full",
                         })}

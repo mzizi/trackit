@@ -1,60 +1,32 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import { GaugeIcon } from "lucide-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
-import { Button, buttonVariants } from "@/components/ui/button";
-import useStore from "@/store";
-import { trpc } from "@/utils/trpc";
+import { buttonVariants } from "@/components/ui/button";
 
 const NavbarAuth = () => {
-  const router = useRouter();
-  const store = useStore();
-
-  const user = store?.authUser;
-
-  const queryClient = useQueryClient();
-  const { mutate: logoutUser } = trpc.logoutUser.useMutation({
-    onSuccess(data) {
-      queryClient.clear();
-      document.location.href = "/login";
-    },
-    onError(error) {
-      toast(error.message, {
-        type: "error",
-        position: "top-right",
-      });
-      queryClient.clear();
-      router.push("/login");
-    },
-  });
-
-  const handleLogout = () => {
-    logoutUser();
-  };
-
   return (
     <div className="flex items-center gap-4">
-      {user ? (
+      <SignedIn>
         <div className="flex items-center justify-center gap-8 w-max">
           <Link
-            href="/profile"
-            className={buttonVariants({ className: "text-sm w-full" })}
+            title="Dashboard"
+            href="/dashboard/"
+            className={buttonVariants({
+              variant: "outline",
+              size: "icon",
+              className: "!rounded-full !bg-transparent shadow",
+            })}
           >
-            Profile
+            <GaugeIcon />
           </Link>
-          <Button
-            variant="outline"
-            className="w-full text-sm"
-            onClick={handleLogout}
-          >
-            Logout
-          </Button>
+          <UserButton />
         </div>
-      ) : (
+      </SignedIn>
+      <SignedOut>
         <div className="flex items-center justify-center gap-8 w-max">
           <Link
-            href="/register"
+            href="/sign-up"
             className={buttonVariants({
               variant: "outline",
               className: "text-sm w-full",
@@ -63,13 +35,13 @@ const NavbarAuth = () => {
             Register
           </Link>
           <Link
-            href="/login"
+            href="/sign-in"
             className={buttonVariants({ className: "text-sm w-full" })}
           >
             Login
           </Link>
         </div>
-      )}
+      </SignedOut>
     </div>
   );
 };
