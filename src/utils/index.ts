@@ -7,3 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export const genRandomID = () =>
   crypto.randomUUID().split("-")[Math.floor(Math.random())];
+
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "KES",
+});

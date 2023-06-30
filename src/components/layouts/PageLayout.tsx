@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -33,7 +35,7 @@ const PageLayout: FC<Props> = ({ children }) => {
                   type="search"
                   name="Search"
                   placeholder="Search..."
-                  className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900"
+                  className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto"
                 />
               </div>
             </div>

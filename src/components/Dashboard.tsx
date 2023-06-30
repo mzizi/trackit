@@ -1,20 +1,15 @@
-import React from "react";
+"use client";
 
-import LineChart from "@/components/charts/LineChart";
+import Overview from "@/components/charts/Overview";
 
 const Dashboard = () => {
   return (
     <div className="w-full xl:w-[85%] border xl:h-[85%] p-8 h-full shadow rounded-md bg-background text-foreground relative">
-      <div className="w-full h-full grid gap-2 grid-rows-5 grid-cols-[repeat(auto-fit,minmax(min(16rem,_100%),_1fr))]">
-        <div className="row-span-1 border rounded-md shadow col-span-full xl:col-span-2 border-border">
-          <div className="grid items-center justify-center h-full gap-2 p-4">
-            <h1 className="font-sans text-3xl font-extrabold leading-snug">
-              Dashboard Title
-            </h1>
-            <p className="text-sm font-normal">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi
-              explicabo, unde vitae cupiditate praesentium sit obcaecati
-            </p>
+      <div className="w-full h-full grid gap-8 grid-rows-5 grid-cols-[repeat(auto-fit,minmax(min(16rem,_100%),_1fr))] divide-y divide-border">
+        <div className="row-span-1 col-span-full xl:col-span-2">
+          <div className="grid items-center h-full gap-2 py-4">
+            <h1 className="text-5xl font-extrabold leading-snug">Dashboard</h1>
+            <p className="text-sm font-normal">Overview of your store</p>
           </div>
         </div>
         <section className="grid grid-cols-2 gap-2 items-between row-span-1 col-[1/-1] xl:col-[3/-1] sm:grid-cols-4">
@@ -93,8 +88,23 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <div className="flex-1 row-[3/-1] xl:row-[2/-1] p-4 border rounded-md shadow border-border col-span-full">
-          <LineChart />
+        <div className="flex-1 row-[3/-1] xl:row-[2/-1] p-4 col-span-full flex items-center justify-center">
+          <Overview
+            data={[
+              { name: "Jan", total: 0 },
+              { name: "Feb", total: 10 },
+              { name: "Mar", total: 20 },
+              { name: "Apr", total: 30 },
+              { name: "May", total: 40 },
+              { name: "Jun", total: 50 },
+              { name: "Jul", total: 60 },
+              { name: "Aug", total: 65 },
+              { name: "Sep", total: 70 },
+              { name: "Oct", total: 80 },
+              { name: "Nov", total: 90 },
+              { name: "Dec", total: 95 },
+            ]}
+          />
         </div>
       </div>
     </div>
