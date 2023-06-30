@@ -2,14 +2,14 @@ import { ReactNode, useMemo, useState } from "react";
 
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
-import { appLinks } from "@/config";
+import { appLinks, appSettings } from "@/config";
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   const styles = useMemo(() => {
     const base = {
-      aside: "fixed top-0 bottom-0 left-0 z-50 border-r border-gray-400",
+      aside: "fixed top-0 bottom-0 left-0 z-50 h-full border-r border-gray-400",
       content: "flex-1 flex flex-col justify-center",
     };
 
@@ -27,11 +27,15 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
     <main className="relative flex w-full h-full min-h-screen">
       <aside className={styles.aside}>
-        <Sidebar collapsed={!openSidebar} links={appLinks} />
+        <Sidebar
+          collapsed={!openSidebar}
+          links={appLinks}
+          settings={appSettings}
+        />
       </aside>
       <section className={styles.content}>
         <Topbar collapseSidebar={setOpenSidebar} />
-        <div className="flex flex-col items-center flex-1 bg-slate-200">
+        <div className="flex flex-col items-center justify-center flex-1 w-full bg-border">
           {children}
         </div>
       </section>
