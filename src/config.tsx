@@ -1,15 +1,19 @@
 import {
+  BanknoteIcon,
   DownloadIcon,
-  FileLineChartIcon,
   GaugeIcon,
   HelpCircleIcon,
   HomeIcon,
   ListIcon,
+  LogOutIcon,
+  MapIcon,
+  SettingsIcon,
   ShoppingCartIcon,
   StoreIcon,
+  TruckIcon,
 } from "lucide-react";
 
-import type { INavLink } from "@/types";
+import type { IAppSetting, INavLink } from "@/types";
 
 export const navLinks: INavLink[] = [
   {
@@ -34,18 +38,7 @@ export const appLinks: INavLink[] = [
   {
     title: "Home",
     icon: <HomeIcon />,
-    subLinks: [
-      {
-        title: "Overview",
-        icon: <GaugeIcon />,
-        href: "/dashboard",
-      },
-      {
-        title: "Reports",
-        href: "/dashboard/reports",
-        icon: <FileLineChartIcon />,
-      },
-    ],
+    href: "/app",
   },
   {
     title: "Store",
@@ -54,11 +47,11 @@ export const appLinks: INavLink[] = [
       {
         title: "Overview",
         icon: <GaugeIcon />,
-        href: "/store",
+        href: "/app/store",
       },
       {
         title: "Stocked Items",
-        href: "/store/items",
+        href: "/app/store/list",
         icon: <ListIcon />,
       },
     ],
@@ -70,18 +63,63 @@ export const appLinks: INavLink[] = [
       {
         title: "Overview",
         icon: <GaugeIcon />,
-        href: "/purchase",
+        href: "/app/purchase",
       },
       {
         title: "Requested Items",
-        href: "/purchase/items",
+        href: "/app/purchase/list",
         icon: <ListIcon />,
       },
     ],
   },
   {
+    title: "Payment",
+    icon: <BanknoteIcon />,
+    subLinks: [
+      {
+        title: "Overview",
+        icon: <GaugeIcon />,
+        href: "/app/payment",
+      },
+      {
+        title: "Payment Items",
+        href: "/app/payment/list",
+        icon: <ListIcon />,
+      },
+    ],
+  },
+  {
+    title: "Delivery",
+    icon: <TruckIcon />,
+    subLinks: [
+      {
+        title: "Overview",
+        icon: <GaugeIcon />,
+        href: "/app/delivery",
+      },
+      {
+        title: "Tracking",
+        href: "/app/delivery/tracking",
+        icon: <MapIcon />,
+      },
+    ],
+  },
+];
+
+export const appSettings: IAppSetting[] = [
+  {
     title: "Help",
+    variant: "ghost",
     icon: <HelpCircleIcon />,
-    href: "/help",
+  },
+  {
+    title: "Settings",
+    variant: "accent",
+    icon: <SettingsIcon />,
+  },
+  {
+    title: "Log Out",
+    variant: "destructive",
+    icon: <LogOutIcon />,
   },
 ];
