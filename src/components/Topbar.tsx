@@ -1,5 +1,3 @@
-"use client";
-
 import {
   AlertCircleIcon,
   AlertTriangleIcon,
@@ -7,6 +5,7 @@ import {
   MenuIcon,
   XIcon,
 } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
 import { Dispatch, FC, SetStateAction } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -16,16 +15,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import StoreSwitcher from "./StoreSwitcher";
-import { UserButton } from "@clerk/nextjs";
 
 interface Props {
+  stores?: Record<string, any>[];
+  collapsed?: boolean;
   collapseSidebar: Dispatch<SetStateAction<boolean>>;
 }
 
-const Topbar: FC<Props> = ({ collapseSidebar }) => {
+const Topbar: FC<Props> = ({ collapsed, collapseSidebar, stores = [] }) => {
   return (
-    <nav className="sticky top-0 left-0 right-0 h-16 border-b border-border">
-      <div className="flex items-center w-full gap-4 px-8 py-2">
+    <nav
+      className={`sticky top-0 right-0 z-50 h-16 bg-background text-foreground`}
+    >
+      <div className="flex items-center w-full gap-4 p-4">
         <div className="flex items-center justify-start flex-1 gap-4">
           <Button
             variant="outline"
@@ -35,7 +37,7 @@ const Topbar: FC<Props> = ({ collapseSidebar }) => {
             <MenuIcon />
           </Button>
           <div className="hidden w-1/2 md:block">
-            <StoreSwitcher items={[]} />
+            <StoreSwitcher items={stores} />
           </div>
           <div className="flex items-center justify-center gap-8 ml-auto ">
             <DropdownMenu>
