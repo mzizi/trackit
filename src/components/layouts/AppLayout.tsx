@@ -1,43 +1,34 @@
 "use client";
 
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useState } from "react";
 
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
 import { appLinks, appSettings } from "@/config";
 
-const AppLayout = ({ children }: { children: ReactNode }) => {
-  const [openSidebar, setOpenSidebar] = useState(false);
-
-  const styles = useMemo(() => {
-    const base = {
-      aside: "fixed top-0 bottom-0 left-0 z-50 h-full border-r border-gray-400",
-      content: "flex-1 flex flex-col justify-center",
-    };
-
-    return openSidebar
-      ? {
-          aside: `${base.aside} w-[15rem]`,
-          content: `${base.content} ml-[15rem]`,
-        }
-      : {
-          aside: `${base.aside} w-[5rem]`,
-          content: `${base.content} ml-[5rem]`,
-        };
-  }, [openSidebar]);
-
+const AppLayout = ({
+  children,
+  stores,
+}: {
+  children: ReactNode;
+  stores?: Record<string, any>[];
+}) => {
+  const [collapsed, setCollapsed] = useState(true);
   return (
-    <main className="relative flex w-full h-full min-h-screen">
-      <aside className={styles.aside}>
-        <Sidebar
-          links={appLinks}
-          settings={appSettings}
-          collapsed={openSidebar ? false : true}
+    <main className="relative flex flex-col w-full h-full min-h-screen">
+      <Sidebar links={appLinks} settings={appSettings} collapsed={collapsed} />
+
+      <section
+        className={`${
+          collapsed ? "ml-[5rem]" : "ml-[15rem]"
+        } flex-1 flex flex-col gap-4 bg-border`}
+      >
+        <Topbar
+          stores={stores}
+          collapsed={collapsed}
+          collapseSidebar={setCollapsed}
         />
-      </aside>
-      <section className={styles.content}>
-        <Topbar collapseSidebar={setOpenSidebar} />
-        <div className="flex flex-col items-center justify-center flex-1 w-full bg-border">
+        <div className="flex flex-col flex-1 w-full h-full gap-4 p-4">
           {children}
         </div>
       </section>
