@@ -11,7 +11,7 @@ interface Props {
 const PageLayout: FC<Props> = ({ children }) => {
   return (
     <div className="relative w-full p-8 border rounded-md shadow h-max bg-background text-foreground">
-      <section className="w-full h-full p-4 border-2 rounded-md shadow border-border">
+      <section className="flex flex-col w-full h-full gap-8 px-6 py-4">
         {children}
       </section>
     </div>

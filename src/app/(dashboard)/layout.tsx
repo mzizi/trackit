@@ -1,13 +1,14 @@
+import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 
-import AppLayout from "@/components/layouts/AppLayout";
+import { ModalProvider } from "@/providers/modal-provider";
 import prisma from "@/utils/prisma";
 
 export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const { userId } = auth();
 
@@ -15,11 +16,16 @@ export default async function DashboardLayout({
     redirect("/sign-in");
   }
 
-  const stores = await prisma.store.findMany({
+  const store = await prisma.store.findFirst({
     where: {
       userId,
     },
   });
 
-  return <AppLayout stores={stores}>{children}</AppLayout>;
+  return (
+    <>
+      {!store && <ModalProvider />}
+      {children}
+    </>
+  );
 }

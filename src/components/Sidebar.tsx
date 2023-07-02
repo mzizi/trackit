@@ -161,18 +161,23 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                 );
               } else if (link.href) {
                 return (
-                  <Button
+                  <Link
+                    href={link.href}
+                    title={link.title}
                     key={`link-${link.href}`}
-                    variant="ghost"
-                    className={`${
-                      collapsed ? "px-0 text-center" : "text-left px-4"
-                    } flex items-center w-full gap-4`}
+                    className={buttonVariants({
+                      variant: "ghost",
+                      size: collapsed ? "icon" : "default",
+                      className: `${
+                        collapsed ? "px-0 text-center" : "text-left px-4"
+                      } flex items-center w-full gap-4`,
+                    })}
                   >
                     {link.icon && (
                       <span className="text-sm aspect-square">{link.icon}</span>
                     )}
                     {!collapsed && <span className="flex-1">{link.title}</span>}
-                  </Button>
+                  </Link>
                 );
               }
             })}
@@ -180,27 +185,32 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
         </div>
         <div className="flex flex-col w-full gap-4 p-4 mt-auto overflow-hidden max-h-1/3">
           {settings?.map((setting) => (
-            <Button
-              key={`link-${genRandomID()}`}
-              variant={setting.variant}
-              className={`${
-                collapsed ? "px-0 text-center" : "text-left px-4"
-              } flex items-center w-full gap-4`}
+            <Link
+              href={setting.href}
+              title={setting.title}
+              key={`link-${setting.href}`}
+              className={buttonVariants({
+                variant: setting.variant,
+                className: `${
+                  collapsed ? "px-0 text-center" : "text-left px-4"
+                } flex items-center w-full gap-4`,
+              })}
             >
               {setting.icon && (
                 <span className="text-sm aspect-square">{setting.icon}</span>
               )}
               {!collapsed && <span className="flex-1">{setting.title}</span>}
-            </Button>
+            </Link>
           ))}
           <SignOutButton>
             <div
+              title="Sign Out"
               className={buttonVariants({
                 variant: "destructive",
                 size: collapsed ? "icon" : "default",
                 className: `${
                   collapsed ? "px-0 text-center" : "text-left px-4"
-                } flex items-center w-full gap-4`,
+                } flex items-center w-full gap-4 cursor-pointer`,
               })}
             >
               <span className="text-sm aspect-square">
