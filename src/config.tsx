@@ -7,6 +7,8 @@ import {
   ListIcon,
   LogOutIcon,
   MapIcon,
+  MegaphoneIcon,
+  PaletteIcon,
   RulerIcon,
   SettingsIcon,
   ShoppingCartIcon,
@@ -48,6 +50,11 @@ export const appLinks: INavLink[] = [
     href: "/products",
   },
   {
+    title: "Billboards",
+    icon: <MegaphoneIcon />,
+    href: "/billboards",
+  },
+  {
     title: "Categories",
     icon: <TagsIcon />,
     href: "/categories",
@@ -58,31 +65,36 @@ export const appLinks: INavLink[] = [
     href: "/sizes",
   },
   {
+    title: "Colors",
+    icon: <PaletteIcon />,
+    href: "/colors",
+  },
+  {
     title: "Orders",
     icon: <ShoppingCartIcon />,
     href: "/orders",
   },
-  {
-    title: "Payments",
-    icon: <BanknoteIcon />,
-    href: "/payments",
-  },
-  {
-    title: "Delivery",
-    icon: <TruckIcon />,
-    subLinks: [
-      {
-        title: "Overview",
-        icon: <ListIcon />,
-        href: "/delivery",
-      },
-      {
-        title: "Tracking",
-        href: "/delivery/tracking",
-        icon: <MapIcon />,
-      },
-    ],
-  },
+  // {
+  //   title: "Payments",
+  //   icon: <BanknoteIcon />,
+  //   href: "/payments",
+  // },
+  // {
+  //   title: "Delivery",
+  //   icon: <TruckIcon />,
+  //   subLinks: [
+  //     {
+  //       title: "Overview",
+  //       icon: <ListIcon />,
+  //       href: "/delivery",
+  //     },
+  //     {
+  //       title: "Tracking",
+  //       href: "/delivery/tracking",
+  //       icon: <MapIcon />,
+  //     },
+  //   ],
+  // },
 ];
 
 export const appSettings: IAppSetting[] = [

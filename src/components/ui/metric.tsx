@@ -5,14 +5,14 @@ import { TrendingUpIcon, TrendingDownIcon, MinusIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 
-interface Props {
+export interface MetricProps {
   icon: ReactNode;
   label: string;
   value: number;
   trend: number;
 }
 
-const Metric = (props: Props) => {
+const Metric = (props: MetricProps) => {
   const sign = useMemo(() => Math.sign(props.trend), [props.trend]);
 
   const variant = useMemo(() => {
@@ -20,8 +20,11 @@ const Metric = (props: Props) => {
   }, [sign]);
 
   return (
-    <div className="flex flex-col max-w-lg gap-2 p-2 border rounded shadow">
-      <h1 className="text-base">{props.label}</h1>
+    <div className="flex flex-col max-w-lg gap-4 p-2 border rounded shadow shadow-foreground/50">
+      <div className="flex w-full h-full gap-4">
+        <span className="w-4 h-4">{props.icon}</span>
+        <span className="flex-1 text-base font-medium">{props.label}</span>
+      </div>
 
       <div className="flex lg:flex-row">
         <span className="w-1/2 text-2xl font-bold">

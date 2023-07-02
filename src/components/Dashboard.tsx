@@ -1,10 +1,10 @@
-import { SmileIcon } from "lucide-react";
-
-import Metric from "@/components/ui/metric";
+import Metric, { type MetricProps } from "@/components/ui/metric";
 import Barchart from "@/components/charts/Barchart";
+import { genRandomID } from "@/utils";
 
 interface Props {
   title?: string;
+  metrics?: MetricProps[];
   description?: string;
 }
 
@@ -22,30 +22,9 @@ const Dashboard = async (props: Props) => {
             </h4>
           </div>
           <section className="grid flex-1 grid-cols-1 gap-2 lg:w-1/2 2xl:grid-cols-4">
-            <Metric
-              icon={<SmileIcon />}
-              label="Happy Customers"
-              value={7500}
-              trend={0}
-            />
-            <Metric
-              icon={<SmileIcon />}
-              label="Happy Customers"
-              value={2400}
-              trend={-25}
-            />
-            <Metric
-              icon={<SmileIcon />}
-              label="Happy Customers"
-              value={100}
-              trend={-75}
-            />
-            <Metric
-              icon={<SmileIcon />}
-              label="Happy Customers"
-              value={300}
-              trend={25}
-            />
+            {props.metrics?.map((metric) => (
+              <Metric {...metric} key={`metric-${genRandomID()}`} />
+            ))}
           </section>
         </div>
         <div className="flex flex-col items-center w-full h-full gap-8 p-4 my-8 divide-y-2 lg:justify-between lg:flex-row lg:divide-y-0 lg:divide-x-2 divide-border">
