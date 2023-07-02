@@ -3,6 +3,7 @@ import { auth } from "@clerk/nextjs";
 
 import AppLayout from "@/components/layouts/AppLayout";
 import prisma from "@/utils/prisma";
+import PageLayout from "@/components/layouts/PageLayout";
 
 export default async function DashboardLayout({
   children,
@@ -21,5 +22,9 @@ export default async function DashboardLayout({
     },
   });
 
-  return <AppLayout stores={stores}>{children}</AppLayout>;
+  return (
+    <AppLayout stores={stores}>
+      <PageLayout>{children}</PageLayout>
+    </AppLayout>
+  );
 }
