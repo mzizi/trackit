@@ -25,7 +25,7 @@ export const ApiList: React.FC<ApiListProps> = ({
   const baseUrl = `${origin}/api/${params.storeId}`;
 
   return (
-    <div className="flex flex-col gap-2 bg-accent">
+    <div className="flex flex-col gap-2">
       <Heading title="API" description={`API Calls for ${title}`} />
       <Separator />
       <ApiAlert

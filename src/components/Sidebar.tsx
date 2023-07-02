@@ -23,6 +23,7 @@ import { Icons } from "@/components/ui/icons";
 import { IAppSetting, INavLink } from "@/types";
 import { genRandomID } from "@/utils";
 import { LogOutIcon } from "lucide-react";
+import router from "next/router";
 
 interface Props {
   links?: INavLink[];
@@ -56,10 +57,10 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
         <div className="sticky top-0 flex items-center w-full h-16 gap-1 px-4 dark:bg-transparent">
           <span
             className={`relative ${
-              collapsed ? "w-3/4 mx-auto" : "w-1/4"
+              collapsed ? "w-full mx-auto" : "w-1/4"
             } aspect-square`}
           >
-            <Icons.logoIcon className="object-cover w-full h-full" />
+            <Icons.logoIcon className="w-12 h-12 aspect-square" />
           </span>
           {!collapsed && (
             <span className="relative flex items-center flex-1 w-full h-full">
@@ -95,7 +96,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                               className={buttonVariants({
                                 variant: "link",
                                 className:
-                                  "w-full !p-0 items-center grid grid-cols-[1fr,_3fr] gap-2 text-left text-sm hover:text-indigo-500 dark:text-indigo-200",
+                                  "w-full !p-0 items-center grid grid-cols-[1fr,_3fr] gap-2 text-left text-sm hover:text-indigo-500 dark:hover:text-indigo-200",
                               })}
                             >
                               {subLink.icon && (
@@ -129,7 +130,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                           variant: "link",
                           className: `w-full flex items-center gap-2 !no-underline group [&[data-state=open]]:border [&[data-state=open]]:bg-background transition hover:text-indigo-500 dark:hover:text-indigo-200 `,
                         })}
-                        // onClick={() => router.push(link?.subLinks[0]?.href)}
+                        onAuxClick={() => router.push(link?.subLinks[0]?.href)}
                       >
                         <div className="flex-1 grid grid-cols-[1fr,_4fr] gap-4 text-left text-sm">
                           {link.icon && <span>{link.icon}</span>}
@@ -212,7 +213,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                 size: collapsed ? "icon" : "default",
                 className: `${
                   collapsed ? "px-0 text-center" : "text-left px-4"
-                } flex items-center w-full gap-4 cursor-pointer text-pink-300`,
+                } flex items-center w-full gap-4 cursor-pointer dark:text-pink-300 text-pink-500`,
               })}
             >
               <span className="text-sm aspect-square">
