@@ -7,9 +7,11 @@ import {
   ListIcon,
   LogOutIcon,
   MapIcon,
+  RulerIcon,
   SettingsIcon,
   ShoppingCartIcon,
   StoreIcon,
+  TagsIcon,
   TruckIcon,
 } from "lucide-react";
 
@@ -46,9 +48,19 @@ export const appLinks: INavLink[] = [
     href: "/products",
   },
   {
-    title: "Purchases",
+    title: "Categories",
+    icon: <TagsIcon />,
+    href: "/categories",
+  },
+  {
+    title: "Sizes",
+    icon: <RulerIcon />,
+    href: "/sizes",
+  },
+  {
+    title: "Orders",
     icon: <ShoppingCartIcon />,
-    href: "/purchases",
+    href: "/orders",
   },
   {
     title: "Payments",

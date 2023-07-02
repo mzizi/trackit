@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 
 import { ApiAlert } from "@/components/ui/api-alert";
 import { Separator } from "@/components/ui/separator";
-import { Heading } from "@/components/ui/header";
+import { Heading } from "@/components/ui/heading";
 
 import { useOrigin } from "@/hooks/use-origin";
 

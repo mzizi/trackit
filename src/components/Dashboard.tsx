@@ -13,7 +13,7 @@ const Dashboard = async (props: Props) => {
     <div className="relative w-full h-full">
       <div className="flex flex-col w-full h-full gap-8 divide-y divide-border">
         <div className="flex flex-col items-center justify-between w-full gap-6 lg:flex-row">
-          <div className="grid items-center w-full h-full gap-4 lg:text-start lg:w-1/3">
+          <div className="grid items-center w-full h-full gap-4 lg:text-start lg:w-1/2 2xl:w-1/3">
             <h1 className="text-5xl font-extrabold leading-snug">
               {props.title}
             </h1>
@@ -21,7 +21,7 @@ const Dashboard = async (props: Props) => {
               {props.description}
             </h4>
           </div>
-          <section className="grid flex-1 grid-cols-1 gap-2 sm:grid-cols-2 2xl:grid-cols-4">
+          <section className="grid flex-1 grid-cols-1 gap-2 lg:w-1/2 2xl:grid-cols-4">
             <Metric
               icon={<SmileIcon />}
               label="Happy Customers"

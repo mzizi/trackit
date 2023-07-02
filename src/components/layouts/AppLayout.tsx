@@ -44,7 +44,7 @@ const AppLayout = ({
 
       <section
         className={`${
-          collapsed ? "ml-[5rem]" : "ml-[15rem]"
+          collapsed ? "lg:ml-[5rem]" : "lg:ml-[15rem]"
         } flex-1 flex flex-col gap-4 bg-border`}
       >
         <Topbar
@@ -52,7 +52,7 @@ const AppLayout = ({
           collapsed={collapsed}
           collapseSidebar={setCollapsed}
         />
-        <div className="flex flex-col flex-1 w-full h-full gap-4 p-4">
+        <div className="flex flex-col flex-1 h-full gap-4 lg:px-4">
           {children}
         </div>
       </section>

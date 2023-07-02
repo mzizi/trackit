@@ -38,20 +38,22 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
 
     return {
       link: buttonVariants({
-        variant: "ghost",
-        className: `${collapsed ? row : col}`,
+        variant: "link",
+        className: `${
+          collapsed ? row : col
+        }  hover:text-indigo-500 dark:text-indigo-200`,
       }),
     };
   }, [collapsed]);
 
   return (
     <aside
-      className={`fixed top-0 bottom-0 left-0 z-50 border-r border-gray-400 ${
-        collapsed ? "w-[5rem]" : "w-[15rem]"
+      className={`fixed top-0 bottom-0 left-0 z-50 bg-background/80 shadow shadow-current/50 ${
+        collapsed ? "w-0 lg:w-[5rem]" : "w-[15rem]"
       }`}
     >
-      <div className="flex flex-col w-full h-screen gap-0 overflow-y-auto divide-y-2 divide-border">
-        <div className="sticky top-0 flex items-center w-full h-16 gap-1 bg-primary/90 text-primary-foreground">
+      <div className="flex flex-col w-full h-screen gap-0 overflow-y-auto divide-y divide-current/10">
+        <div className="sticky top-0 flex items-center w-full h-16 gap-1 px-4 dark:bg-transparent">
           <span
             className={`relative ${
               collapsed ? "w-3/4 mx-auto" : "w-1/4"
@@ -81,7 +83,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                       <DropdownMenuLabel className="capitalize text-primary/90">
                         {link.title}
                       </DropdownMenuLabel>
-                      <DropdownMenuSeparator className="bg-primary" />
+                      <DropdownMenuSeparator className="" />
                       <div className="flex flex-col gap-2">
                         {link.subLinks.map((subLink) => (
                           <DropdownMenuItem
@@ -93,7 +95,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                               className={buttonVariants({
                                 variant: "link",
                                 className:
-                                  "w-full !p-0 items-center grid grid-cols-[1fr,_3fr] gap-2 text-left text-sm hover:text-indigo-500",
+                                  "w-full !p-0 items-center grid grid-cols-[1fr,_3fr] gap-2 text-left text-sm hover:text-indigo-500 dark:text-indigo-200",
                               })}
                             >
                               {subLink.icon && (
@@ -120,12 +122,12 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                   >
                     <AccordionItem
                       value={link.title}
-                      className="w-full overflow-hidden border-0 rounded-md bg-accent h-max"
+                      className="w-full h-full bg-transparent border-0"
                     >
                       <AccordionTrigger
                         className={buttonVariants({
-                          variant: "ghost",
-                          className: `w-full flex items-center gap-2 !no-underline [&[data-state=open]]:border [&[data-state=open]]:bg-background transition `,
+                          variant: "link",
+                          className: `w-full flex items-center gap-2 !no-underline group [&[data-state=open]]:border [&[data-state=open]]:bg-background transition hover:text-indigo-500 dark:hover:text-indigo-200 `,
                         })}
                         // onClick={() => router.push(link?.subLinks[0]?.href)}
                       >
@@ -134,15 +136,15 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                           <span>{link.title}</span>
                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="px-4 py-2 space-y-4 text-left bg-transparent border-b border-l border-r rounded shadow border-border">
+                      <AccordionContent className="px-4 py-2 space-y-4 text-left">
                         {link.subLinks.map((subLink) => (
                           <Link
                             href={subLink.href}
                             key={`sublink-${genRandomID()}`}
                             className={buttonVariants({
-                              variant: "secondary",
+                              variant: "link",
                               className:
-                                "w-full !p-0 items-center grid grid-cols-[1fr,_4fr] gap-2 text-left text-sm hover:text-indigo-500",
+                                "w-full !p-0 items-center grid grid-cols-[1fr,_4fr] gap-2 text-left text-sm hover:text-indigo-500 dark:hover:text-indigo-200",
                             })}
                           >
                             {subLink.icon && (
@@ -166,11 +168,11 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                     title={link.title}
                     key={`link-${link.href}`}
                     className={buttonVariants({
-                      variant: "ghost",
+                      variant: "link",
                       size: collapsed ? "icon" : "default",
                       className: `${
                         collapsed ? "px-0 text-center" : "text-left px-4"
-                      } flex items-center w-full gap-4`,
+                      } flex items-center w-full gap-4 hover:text-indigo-500 dark:hover:text-indigo-200`,
                     })}
                   >
                     {link.icon && (
@@ -190,7 +192,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
               title={setting.title}
               key={`link-${setting.href}`}
               className={buttonVariants({
-                variant: setting.variant,
+                variant: "link",
                 className: `${
                   collapsed ? "px-0 text-center" : "text-left px-4"
                 } flex items-center w-full gap-4`,
@@ -206,11 +208,11 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
             <div
               title="Sign Out"
               className={buttonVariants({
-                variant: "destructive",
+                variant: "link",
                 size: collapsed ? "icon" : "default",
                 className: `${
                   collapsed ? "px-0 text-center" : "text-left px-4"
-                } flex items-center w-full gap-4 cursor-pointer`,
+                } flex items-center w-full gap-4 cursor-pointer text-pink-300`,
               })}
             >
               <span className="text-sm aspect-square">
