@@ -1,9 +1,29 @@
+import {
+  BanknoteIcon,
+  LayersIcon,
+  PackageIcon,
+  ShoppingBagIcon,
+  SmileIcon,
+} from "lucide-react";
+
+import { getStockCount } from "@/actions/get-stock-count";
+import { getSalesCount } from "@/actions/get-sales-count";
+import { getTotalRevenue } from "@/actions/get-total-revenue";
+
 import Dashboard from "@/components/Dashboard";
 import PageLayout from "@/components/layouts/PageLayout";
-import { BanknoteIcon, ShoppingBagIcon } from "lucide-react";
-import { PackageIcon, SmileIcon } from "lucide-react";
 
-const page = async ({}) => {
+interface Props {
+  params: {
+    storeId: string;
+  };
+}
+
+const Page = async ({ params }: Props) => {
+  const salesCount = await getSalesCount(params.storeId);
+  const stockCount = await getStockCount(params.storeId);
+  const totalRevenue = await getTotalRevenue(params.storeId);
+
   return (
     <PageLayout>
       <Dashboard
@@ -13,14 +33,14 @@ const page = async ({}) => {
           {
             trend: 25,
             icon: <ShoppingBagIcon />,
-            label: "Orders",
-            value: 17500,
+            label: "Sales",
+            value: salesCount,
           },
           {
-            trend: -18,
-            icon: <PackageIcon />,
-            label: "Shipments",
-            value: 1800,
+            trend: 0,
+            icon: <LayersIcon />,
+            label: "Stock",
+            value: stockCount,
           },
           {
             trend: 25,
@@ -29,10 +49,10 @@ const page = async ({}) => {
             value: 7500,
           },
           {
-            trend: 0,
+            trend: -18,
             icon: <BanknoteIcon />,
-            label: "Payments",
-            value: 3600,
+            label: "Total Revenue",
+            value: totalRevenue,
           },
         ]}
       />
@@ -40,4 +60,4 @@ const page = async ({}) => {
   );
 };
 
-export default page;
+export default Page;
