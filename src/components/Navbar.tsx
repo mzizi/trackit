@@ -17,6 +17,7 @@ import {
 import { genRandomID } from "@/utils";
 
 import type { INavLink } from "@/types";
+import ThemeToggle from "@/components/ThemeToggle";
 interface Props {
   links?: INavLink[];
 }
@@ -86,6 +87,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
 
         <div className="flex items-center justify-center flex-1 gap-8 w-max">
           <NavbarAuth />
+          <ThemeToggle />
           <Button
             variant="outline"
             onClick={() => setSideNav((prev) => !prev)}

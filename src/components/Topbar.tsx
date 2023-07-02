@@ -8,13 +8,14 @@ import {
 import { UserButton } from "@clerk/nextjs";
 import { Dispatch, FC, SetStateAction } from "react";
 
+import StoreSwitcher from "@/components/StoreSwitcher";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import StoreSwitcher from "./StoreSwitcher";
 
 interface Props {
   stores?: Record<string, any>[];
@@ -73,6 +74,7 @@ const Topbar: FC<Props> = ({ collapsed, collapseSidebar, stores = [] }) => {
                 </div>
               </DropdownMenuContent>
             </DropdownMenu>
+            <ThemeToggle />
             <UserButton />
           </div>
         </div>
