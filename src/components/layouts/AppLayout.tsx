@@ -1,10 +1,12 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
 import { appLinks, appSettings } from "@/config";
+import { redirect, useParams } from "next/navigation";
+import { IAppSetting, INavLink } from "@/types";
 
 const AppLayout = ({
   children,
@@ -13,10 +15,32 @@ const AppLayout = ({
   children: ReactNode;
   stores?: Record<string, any>[];
 }) => {
+  const params = useParams();
+
+  const links = useMemo(() => {
+    if (params.storeId) {
+      return appLinks.map((link) => ({
+        ...link,
+        href: link.href ? `/${params.storeId}${link.href}` : undefined,
+      })) as INavLink[];
+    }
+    return appLinks;
+  }, [params.storeId]);
+
+  const settings = useMemo(() => {
+    if (params.storeId) {
+      return appSettings.map((link) => ({
+        ...link,
+        href: `/${params.storeId}${link.href}`,
+      })) as IAppSetting[];
+    }
+    return appSettings;
+  }, [params.storeId]);
+
   const [collapsed, setCollapsed] = useState(true);
   return (
     <main className="relative flex flex-col w-full h-full min-h-screen">
-      <Sidebar links={appLinks} settings={appSettings} collapsed={collapsed} />
+      <Sidebar links={links} settings={settings} collapsed={collapsed} />
 
       <section
         className={`${

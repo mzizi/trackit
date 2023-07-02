@@ -32,8 +32,7 @@ export type INavLink =
       subLinks?: never;
     };
 
-export interface IAppSetting {
-  title: string;
+export interface IAppSetting extends LinkType {
   variant: VariantType;
   icon: JSX.Element;
 }

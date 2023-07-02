@@ -38,55 +38,22 @@ export const appLinks: INavLink[] = [
   {
     title: "Home",
     icon: <HomeIcon />,
-    href: "/app",
+    href: "/",
   },
   {
-    title: "Store",
+    title: "Products",
     icon: <StoreIcon />,
-    subLinks: [
-      {
-        title: "Overview",
-        icon: <GaugeIcon />,
-        href: "/dashboard/store",
-      },
-      {
-        title: "Stocked Items",
-        href: "/dashboard/store/list",
-        icon: <ListIcon />,
-      },
-    ],
+    href: "/products",
   },
   {
-    title: "Purchase",
+    title: "Purchases",
     icon: <ShoppingCartIcon />,
-    subLinks: [
-      {
-        title: "Overview",
-        icon: <GaugeIcon />,
-        href: "/dashboard/purchase",
-      },
-      {
-        title: "Requested Items",
-        href: "/dashboard/purchase/list",
-        icon: <ListIcon />,
-      },
-    ],
+    href: "/purchases",
   },
   {
-    title: "Payment",
+    title: "Payments",
     icon: <BanknoteIcon />,
-    subLinks: [
-      {
-        title: "Overview",
-        icon: <GaugeIcon />,
-        href: "/dashboard/payment",
-      },
-      {
-        title: "Payment Items",
-        href: "/dashboard/payment/list",
-        icon: <ListIcon />,
-      },
-    ],
+    href: "/payments",
   },
   {
     title: "Delivery",
@@ -94,12 +61,12 @@ export const appLinks: INavLink[] = [
     subLinks: [
       {
         title: "Overview",
-        icon: <GaugeIcon />,
-        href: "/dashboard/delivery",
+        icon: <ListIcon />,
+        href: "/delivery",
       },
       {
         title: "Tracking",
-        href: "/dashboard/delivery/tracking",
+        href: "/delivery/tracking",
         icon: <MapIcon />,
       },
     ],
@@ -110,11 +77,13 @@ export const appSettings: IAppSetting[] = [
   {
     title: "Help",
     variant: "ghost",
+    href: "/help",
     icon: <HelpCircleIcon />,
   },
   {
     title: "Settings",
     variant: "accent",
+    href: "/settings",
     icon: <SettingsIcon />,
   },
   // {

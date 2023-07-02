@@ -1,14 +1,14 @@
 "use client";
 
 import { ReactNode, useMemo } from "react";
-import { Card } from "@/components/ui/card";
 import { TrendingUpIcon, TrendingDownIcon, MinusIcon } from "lucide-react";
-import { Badge, BadgeProps } from "@/components/ui/badge";
+
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   icon: ReactNode;
   label: string;
-  value: string;
+  value: number;
   trend: number;
 }
 
@@ -20,16 +20,19 @@ const Metric = (props: Props) => {
   }, [sign]);
 
   return (
-    <div className="flex flex-col justify-center gap-2 p-2 border rounded shadow">
+    <div className="flex flex-col max-w-lg gap-2 p-2 border rounded shadow">
       <h1 className="text-base">{props.label}</h1>
 
-      <div className="flex items-center gap-4">
-        <span className="w-1/2 text-2xl font-bold">{props.value}</span>
+      <div className="flex lg:flex-row">
+        <span className="w-1/2 text-2xl font-bold">
+          {sign === -1 ? "-" : sign === 1 ? "+" : ""}
+          {props.value}
+        </span>
         <Badge
           variant={variant}
-          className="flex items-center w-1/2 h-full !gap-2 text-sm rounded"
+          className="flex items-center justify-between gap-4 text-xs rounded"
         >
-          <span className="aspect-square">
+          <span className="w-6 h-6">
             {sign === -1 ? (
               <TrendingDownIcon />
             ) : sign === 0 ? (
@@ -38,7 +41,7 @@ const Metric = (props: Props) => {
               <TrendingUpIcon />
             )}
           </span>
-          <span className="text-sm">{props.trend}%</span>
+          <span className="flex-1 text-sm texl-right">{props.trend}%</span>
         </Badge>
       </div>
     </div>
