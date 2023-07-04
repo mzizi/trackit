@@ -8,6 +8,7 @@ import {
   LogOutIcon,
   MapIcon,
   MegaphoneIcon,
+  PackageIcon,
   PaletteIcon,
   RulerIcon,
   SettingsIcon,
@@ -50,9 +51,14 @@ export const appLinks: INavLink[] = [
     href: "/products",
   },
   {
-    title: "Billboards",
-    icon: <MegaphoneIcon />,
-    href: "/billboards",
+    title: "Orders",
+    icon: <ShoppingCartIcon />,
+    href: "/orders",
+  },
+  {
+    title: "Deliveries",
+    icon: <PackageIcon />,
+    href: "/deliveries",
   },
   {
     title: "Categories",
@@ -70,9 +76,9 @@ export const appLinks: INavLink[] = [
     href: "/colors",
   },
   {
-    title: "Orders",
-    icon: <ShoppingCartIcon />,
-    href: "/orders",
+    title: "Billboards",
+    icon: <MegaphoneIcon />,
+    href: "/billboards",
   },
   // {
   //   title: "Payments",
