@@ -8,22 +8,30 @@ import { DeliveryItemList } from "@/components/ui/delivery-item";
 import { Heading } from "@/components/ui/heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { genRandomID } from "@/utils";
+import { useEffect, useState } from "react";
 
 type DeliveryItem = {
   value: string;
-  endTime?: string;
-  startTime?: string;
 };
 
 interface DeliveryClientProps {
   tabs?: DeliveryItem[];
+  data: any[];
 }
 
 export const DeliveryClient: React.FC<DeliveryClientProps> = ({
   tabs = [],
+  data = [],
 }) => {
-  const params = useParams();
-  const router = useRouter();
+  const [lngLatCoords, setLngLatCoords] = useState<number[][]>([]);
+  const [lastPosition, setLastPosition] = useState<[number, number]>([
+    -1.28333, 36.81667,
+  ]);
+  const [latLngMarkerPositions, setLatLngMarkerPositions] = useState<
+    [number, number][]
+  >([]);
+
+  // logic to transform data into the items needed to pass to the map
 
   return (
     <div className="flex flex-col w-full h-full gap-4 p-2">
@@ -54,7 +62,12 @@ export const DeliveryClient: React.FC<DeliveryClientProps> = ({
                 <h1 className="text-lg font-medium capitalize">{tab.value}</h1>
               </div>
               <div className="col-[2/-1] w-full h-full rounded-md bg-pink-200">
-                <Map />
+                <Map
+                  coords={lngLatCoords}
+                  lastPosition={lastPosition}
+                  markers={latLngMarkerPositions}
+                  latestTimestamp={new Date().toLocaleTimeString()}
+                />
               </div>
               {/* <DeliveryItemList key={`tab-item-${genRandomID()}`} /> */}
             </div>

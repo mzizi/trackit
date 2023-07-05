@@ -1,19 +1,34 @@
 "use client";
 
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet-defaulticon-compatibility";
+
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-const MapboxToken = process.env.NEXT_MAPBOX_PUBLIC_TOKEN || "";
+const MapboxToken = process.env.NEXT_MAPBOX_ACCESS_TOKEN || "";
 
-const Map = () => {
+interface Props {
+  coords?: number[][];
+  lastPosition: [number, number];
+  markers?: [number, number][];
+  latestTimestamp?: string;
+}
+
+const Map = ({ coords, lastPosition, markers, latestTimestamp }: Props) => {
   const position = [-1.28333, 36.81667];
-  //   const position = [51.505, -0.09]; // [latitude, longitude]
-  const zoomLevel = 16;
+  const zoomLevel = 12;
+  const geoJsonObj: any = [
+    {
+      type: "LineString",
+      coordinates: coords,
+    },
+  ];
 
   return (
     <MapContainer
-      center={position}
       zoom={zoomLevel}
+      center={lastPosition}
       scrollWheelZoom={false}
       className="w-full h-full border rounded-md shadow border-border"
     >
@@ -21,9 +36,14 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position}>
+      <Marker position={lastPosition} draggable>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          Last recorded position:
+          <br />
+          {lastPosition[0].toFixed(3)}&#176;,&nbsp;
+          {lastPosition[1].toFixed(3)}&#176;
+          <br />
+          {latestTimestamp}
         </Popup>
       </Marker>
     </MapContainer>
