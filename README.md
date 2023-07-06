@@ -1,11 +1,11 @@
-# TrackIt: A Fullstack Next.js 13 App Router, React, Tailwind, Prisma, MySQL
+# TrackIt: A Fullstack Product Management System
 
 ### Key Features:
 
 - **Shadcn UI** for the taiwlwindcss theming and more
 - **MySQL + PlanetScale** & **Prisma** as ORM
 - **@Clerkjs** for Authentication.
-- Multiple vendors(Stores) using a shared CMS like experience:
+- Multiple vendors(Stores) using a shared CMS like experience.
 - Product management whose features include:
   - Create, update and delete products
   - Edit product details including uploading multiple images using **Cloudinary**
@@ -18,6 +18,8 @@
   - Order creation and management of all sales
   - See graphs of for total revenue and a nifty dashboard for all analytics
   - Stripe checkout & webhooks
+- Tracking of all deliveries and matching to nearest physical store (pickup location).
+- Tracing and tracking of all items in a store.
 
 ### Prerequisites
 
