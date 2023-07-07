@@ -1,21 +1,15 @@
 import {
-  BanknoteIcon,
   DownloadIcon,
-  GaugeIcon,
   HelpCircleIcon,
   HomeIcon,
-  ListIcon,
-  LogOutIcon,
   MapIcon,
   MegaphoneIcon,
   PackageIcon,
   PaletteIcon,
   RulerIcon,
   SettingsIcon,
-  ShoppingCartIcon,
   StoreIcon,
   TagsIcon,
-  TruckIcon,
 } from "lucide-react";
 
 import type { IAppSetting, INavLink } from "@/types";
@@ -52,12 +46,12 @@ export const appLinks: INavLink[] = [
   },
   {
     title: "Orders",
-    icon: <ShoppingCartIcon />,
+    icon: <PackageIcon />,
     href: "/orders",
   },
   {
     title: "Deliveries",
-    icon: <PackageIcon />,
+    icon: <MapIcon />,
     href: "/deliveries",
   },
   {

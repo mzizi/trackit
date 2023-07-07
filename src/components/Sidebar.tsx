@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { FC, useMemo } from "react";
+import { usePathname } from "next/navigation";
+import { FC, useCallback, useMemo } from "react";
+import { LogOutIcon } from "lucide-react";
 import { SignOutButton } from "@clerk/nextjs";
 
 import {
@@ -10,7 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,10 +22,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/ui/icons";
+
 import { IAppSetting, INavLink } from "@/types";
 import { genRandomID } from "@/utils";
-import { LogOutIcon } from "lucide-react";
-import router from "next/router";
 
 interface Props {
   links?: INavLink[];
@@ -32,6 +33,8 @@ interface Props {
 }
 
 const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
+  const currentRoute = usePathname();
+
   const styles = useMemo(() => {
     const col = "w-full grid grid-cols-[1fr,_4fr] gap-4 text-left text-sm";
     const row =
@@ -46,6 +49,17 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
       }),
     };
   }, [collapsed]);
+
+  const isActive = useCallback(
+    (link: string) => {
+      return currentRoute === link
+        ? true
+        : link === `${currentRoute}/`
+        ? true
+        : false;
+    },
+    [currentRoute]
+  );
 
   return (
     <aside
@@ -95,8 +109,11 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                               href={subLink.href}
                               className={buttonVariants({
                                 variant: "link",
-                                className:
-                                  "w-full !p-0 items-center grid grid-cols-[1fr,_3fr] gap-2 text-left text-sm hover:text-indigo-500 dark:hover:text-indigo-200",
+                                className: `${
+                                  isActive(subLink.href)
+                                    ? "text-indigo-500"
+                                    : "text-current"
+                                } w-full !p-0 items-center grid grid-cols-[1fr,_3fr] gap-2 text-left text-sm hover:text-indigo-500 dark:hover:text-indigo-200`,
                               })}
                             >
                               {subLink.icon && (
@@ -130,7 +147,6 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                           variant: "link",
                           className: `w-full flex items-center gap-2 !no-underline group [&[data-state=open]]:border [&[data-state=open]]:bg-background transition hover:text-indigo-500 dark:hover:text-indigo-200 `,
                         })}
-                        onAuxClick={() => router.push(link?.subLinks[0]?.href)}
                       >
                         <div className="flex-1 grid grid-cols-[1fr,_4fr] gap-4 text-left text-sm">
                           {link.icon && <span>{link.icon}</span>}
@@ -144,8 +160,11 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                             key={`sublink-${genRandomID()}`}
                             className={buttonVariants({
                               variant: "link",
-                              className:
-                                "w-full !p-0 items-center grid grid-cols-[1fr,_4fr] gap-2 text-left text-sm hover:text-indigo-500 dark:hover:text-indigo-200",
+                              className: `${
+                                isActive(subLink.href)
+                                  ? "text-indigo-500"
+                                  : "text-current"
+                              } w-full !p-0 items-center grid grid-cols-[1fr,_4fr] gap-2 text-left text-sm hover:text-indigo-500 dark:hover:text-indigo-200`,
                             })}
                           >
                             {subLink.icon && (
@@ -173,7 +192,11 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                       size: collapsed ? "icon" : "default",
                       className: `${
                         collapsed ? "px-0 text-center" : "text-left px-4"
-                      } flex items-center w-full gap-4 hover:text-indigo-500 dark:hover:text-indigo-200`,
+                      } ${
+                        isActive(link.href) ? "text-indigo-500" : "text-current"
+                      } ${isActive(
+                        link.href
+                      )} flex items-center w-full gap-4 hover:text-indigo-500 dark:hover:text-indigo-200`,
                     })}
                   >
                     {link.icon && (
@@ -195,6 +218,8 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
               className={buttonVariants({
                 variant: "link",
                 className: `${
+                  isActive(setting.href) ? "text-indigo-500" : "text-current"
+                } ${
                   collapsed ? "px-0 text-center" : "text-left px-4"
                 } flex items-center w-full gap-4`,
               })}
