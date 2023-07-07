@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import Map from "@/components/Map";
@@ -8,7 +9,8 @@ import { DeliveryItemList } from "@/components/ui/delivery-item";
 import { Heading } from "@/components/ui/heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { genRandomID } from "@/utils";
-import { useEffect, useState } from "react";
+
+import people from "@/assets/data/users.json";
 
 type DeliveryItem = {
   value: string;
@@ -16,12 +18,12 @@ type DeliveryItem = {
 
 interface DeliveryClientProps {
   tabs?: DeliveryItem[];
-  data: any[];
+  data?: any[];
 }
 
 export const DeliveryClient: React.FC<DeliveryClientProps> = ({
   tabs = [],
-  data = [],
+  data = people,
 }) => {
   const [lngLatCoords, setLngLatCoords] = useState<number[][]>([]);
   const [lastPosition, setLastPosition] = useState<[number, number]>([
@@ -30,6 +32,19 @@ export const DeliveryClient: React.FC<DeliveryClientProps> = ({
   const [latLngMarkerPositions, setLatLngMarkerPositions] = useState<
     [number, number][]
   >([]);
+
+  useEffect(() => {
+    if (window && data) {
+      const keys = Object.keys(data[0]).filter((key) => key === "address");
+      const values = data
+        .map((item) => item[keys[0]])
+        .map((val) => Object.values(val["geolocation"])) as [number, number][];
+      if (values) {
+        setLngLatCoords(values);
+        setLatLngMarkerPositions(values);
+      }
+    }
+  }, [data]);
 
   // logic to transform data into the items needed to pass to the map
 
@@ -57,11 +72,14 @@ export const DeliveryClient: React.FC<DeliveryClientProps> = ({
             className="w-full h-full transition ease-in-out border rounded shadow border-border"
             key={`tab-content-${genRandomID()}`}
           >
-            <div className="grid w-full h-full min-h-[65vh] grid-cols-3 gap-2 p-4">
-              <div className="col-span-1">
-                <h1 className="text-lg font-medium capitalize">{tab.value}</h1>
+            <div className="grid w-full h-[65vh] overflow-hidden grid-cols-3 gap-2 p-4">
+              <div className="flex flex-col col-span-1 gap-4 divide-y divide-border">
+                <h1 className="text-base font-medium capitalize">
+                  {tab.value}
+                </h1>
+                <DeliveryItemList key={`tab-item-${genRandomID()}`} />
               </div>
-              <div className="col-[2/-1] w-full h-full rounded-md bg-pink-200">
+              <div className="col-[2/-1] w-full h-[calc(65vh-_2rem)] rounded-md bg-pink-200">
                 <Map
                   coords={lngLatCoords}
                   lastPosition={lastPosition}
@@ -69,7 +87,6 @@ export const DeliveryClient: React.FC<DeliveryClientProps> = ({
                   latestTimestamp={new Date().toLocaleTimeString()}
                 />
               </div>
-              {/* <DeliveryItemList key={`tab-item-${genRandomID()}`} /> */}
             </div>
           </TabsContent>
         ))}
