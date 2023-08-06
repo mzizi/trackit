@@ -15,6 +15,7 @@ import {
   StoreIcon,
   TagsIcon,
   TruckIcon,
+  UsersIcon,
 } from "lucide-react";
 
 import type { IAppSetting, INavLink } from "@/types";
@@ -22,6 +23,7 @@ import type { IAppSetting, INavLink } from "@/types";
 export const navLinks: INavLink[] = [
   {
     title: "Resources",
+    href: "/resources",
     icon: <DownloadIcon />,
     subLinks: [
       {
@@ -45,55 +47,63 @@ export const appLinks: INavLink[] = [
     href: "/",
   },
   {
-    title: "Products",
-    icon: <StoreIcon />,
-    href: "/products",
-  },
-  {
     title: "Billboards",
     icon: <MegaphoneIcon />,
     href: "/billboards",
   },
   {
-    title: "Categories",
-    icon: <TagsIcon />,
-    href: "/categories",
-  },
-  {
-    title: "Sizes",
-    icon: <RulerIcon />,
-    href: "/sizes",
-  },
-  {
-    title: "Colors",
-    icon: <PaletteIcon />,
-    href: "/colors",
+    title: "Customers",
+    icon: <UsersIcon />,
+    href: "/customers",
   },
   {
     title: "Orders",
     icon: <ShoppingCartIcon />,
     href: "/orders",
   },
+  {
+    title: "Deliveries",
+    href: "/deliveries",
+    icon: <TruckIcon />,
+    subLinks: [
+      {
+        title: "Overview",
+        icon: <ListIcon />,
+        href: "/delivery",
+      },
+      {
+        title: "Tracking",
+        href: "/delivery/tracking",
+        icon: <MapIcon />,
+      },
+    ],
+  },
+  {
+    title: "Products",
+    icon: <StoreIcon />,
+    href: "/products",
+    subLinks: [
+      {
+        title: "Categories",
+        icon: <TagsIcon />,
+        href: "/categories",
+      },
+      {
+        title: "Sizes",
+        icon: <RulerIcon />,
+        href: "/sizes",
+      },
+      {
+        title: "Colors",
+        icon: <PaletteIcon />,
+        href: "/colors",
+      },
+    ],
+  },
   // {
   //   title: "Payments",
   //   icon: <BanknoteIcon />,
   //   href: "/payments",
-  // },
-  // {
-  //   title: "Delivery",
-  //   icon: <TruckIcon />,
-  //   subLinks: [
-  //     {
-  //       title: "Overview",
-  //       icon: <ListIcon />,
-  //       href: "/delivery",
-  //     },
-  //     {
-  //       title: "Tracking",
-  //       href: "/delivery/tracking",
-  //       icon: <MapIcon />,
-  //     },
-  //   ],
   // },
 ];
 

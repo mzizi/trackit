@@ -92,7 +92,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                             key={`sublink-${genRandomID()}`}
                           >
                             <Link
-                              href={subLink.href}
+                              href={link.href + subLink.href}
                               className={buttonVariants({
                                 variant: "link",
                                 className:
@@ -140,7 +140,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                       <AccordionContent className="px-4 py-2 space-y-4 text-left">
                         {link.subLinks.map((subLink) => (
                           <Link
-                            href={subLink.href}
+                            href={link.href + subLink.href}
                             key={`sublink-${genRandomID()}`}
                             className={buttonVariants({
                               variant: "link",
@@ -162,7 +162,7 @@ const Sidebar: FC<Props> = ({ collapsed, links, settings }) => {
                     </AccordionItem>
                   </Accordion>
                 );
-              } else if (link.href) {
+              } else {
                 return (
                   <Link
                     href={link.href}

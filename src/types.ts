@@ -21,7 +21,7 @@ export interface LinkType {
 export type INavLink =
   | {
       title: string;
-      href?: never;
+      href: string;
       icon?: ReactNode;
       subLinks: LinkType[];
     }
