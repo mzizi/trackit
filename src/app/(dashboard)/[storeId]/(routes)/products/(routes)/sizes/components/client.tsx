@@ -21,7 +21,7 @@ export const SizesClient: React.FC<SizesClientProps> = ({ data }) => {
   const router = useRouter();
 
   return (
-    <PageLayout>
+    <>
       <div className="flex items-center justify-between">
         <Heading
           title={`Sizes (${data.length})`}
@@ -33,9 +33,8 @@ export const SizesClient: React.FC<SizesClientProps> = ({ data }) => {
       </div>
       <Separator />
       <DataTable searchKey="name" columns={columns} data={data} />
-      <Heading title="API" description="API Calls for Sizes" />
       <Separator />
-      <ApiList entityName="sizes" entityIdName="sizeId" />
-    </PageLayout>
+      <ApiList title="Sizes" entityName="sizes" entityIdName="sizeId" />
+    </>
   );
 };

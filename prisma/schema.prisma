@@ -12,12 +12,14 @@ model Store {
   id         String      @id @default(uuid())
   name       String
   userId     String
+  address    String      @default("")
   billboards Billboard[] @relation("StoreToBillboard")
   categories Category[]  @relation("StoreToCategory")
   products   Product[]   @relation("StoreToProduct")
   sizes      Size[]      @relation("StoreToSize")
   colors     Color[]     @relation("StoreToColor")
   orders     Order[]     @relation("StoreToOrder")
+  deliveries Delivery[]  @relation("StoreToDelivery")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
@@ -79,6 +81,8 @@ model Order {
   id         String      @id @default(uuid())
   storeId    String // Foreign Key to Store
   store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
+  deliveryId String // Foreign Key to Delivery
+  delivery   Delivery    @relation(fields: [deliveryId], references: [id])
   orderItems OrderItem[] // Relation to OrderItem model
   isPaid     Boolean     @default(false)
   phone      String      @default("")
@@ -87,6 +91,7 @@ model Order {
   updatedAt  DateTime    @updatedAt
 
   @@index([storeId])
+  @@index([deliveryId])
 }
 
 // Intermediary for a many-to-many relationship
@@ -136,4 +141,16 @@ model Image {
   updatedAt DateTime @updatedAt
 
   @@index([productId])
+}
+
+model Delivery {
+  id        String   @id @default(uuid())
+  storeId   String // Foreign Key to Store
+  store     Store    @relation("StoreToDelivery", fields: [storeId], references: [id])
+  orders    Order[] // Relation to Order model
+  address   String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId])
 }
