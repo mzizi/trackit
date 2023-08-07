@@ -1,20 +1,14 @@
 import {
-  BanknoteIcon,
   DownloadIcon,
-  GaugeIcon,
   HelpCircleIcon,
   HomeIcon,
-  ListIcon,
-  LogOutIcon,
   MapIcon,
-  MegaphoneIcon,
+  PackageIcon,
   PaletteIcon,
   RulerIcon,
   SettingsIcon,
-  ShoppingCartIcon,
   StoreIcon,
   TagsIcon,
-  TruckIcon,
   UsersIcon,
 } from "lucide-react";
 
@@ -47,36 +41,19 @@ export const appLinks: INavLink[] = [
     href: "/",
   },
   {
-    title: "Billboards",
-    icon: <MegaphoneIcon />,
-    href: "/billboards",
+    title: "Orders",
+    icon: <PackageIcon />,
+    href: "/orders",
+  },
+  {
+    title: "Deliveries",
+    icon: <MapIcon />,
+    href: "/deliveries",
   },
   {
     title: "Customers",
     icon: <UsersIcon />,
     href: "/customers",
-  },
-  {
-    title: "Orders",
-    icon: <ShoppingCartIcon />,
-    href: "/orders",
-  },
-  {
-    title: "Deliveries",
-    href: "/deliveries",
-    icon: <TruckIcon />,
-    subLinks: [
-      {
-        title: "Overview",
-        icon: <ListIcon />,
-        href: "/delivery",
-      },
-      {
-        title: "Tracking",
-        href: "/delivery/tracking",
-        icon: <MapIcon />,
-      },
-    ],
   },
   {
     title: "Products",
