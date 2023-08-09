@@ -5,6 +5,7 @@ import { ToastProvider } from "@/providers/toast-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import "@/styles/globals.css";
+import Layout from "@/components/layouts/DefaultLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default async function RootLayout({
         <body className={inter.className}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ToastProvider />
-            {children}
+            <Layout>{children}</Layout>
           </ThemeProvider>
         </body>
       </html>
