@@ -1,11 +1,12 @@
-import { MenuIcon, XIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { FC, useState } from "react";
+import { MenuIcon, XIcon } from "lucide-react";
 
-import NavbarAuth from "@/components/NavbarAuth";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Icons } from "@/components/ui/icons";
 import { ListItem } from "@/components/ui/list-item";
+import NavbarAuth from "@/components/NavbarAuth";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,16 +14,17 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import ThemeToggle from "@/components/ThemeToggle";
 import { genRandomID } from "@/utils";
 
 import type { INavLink } from "@/types";
-import ThemeToggle from "@/components/ThemeToggle";
 interface Props {
-  links?: INavLink[];
+  navItems?: INavLink[];
 }
 
-const Navbar: FC<Props> = ({ links = [] }) => {
+const Navbar: FC<Props> = ({ navItems = [] }) => {
   const [sideNav, setSideNav] = useState(false);
 
   return (
@@ -42,46 +44,62 @@ const Navbar: FC<Props> = ({ links = [] }) => {
       <div className="self-end hidden md:justify-center md:gap-24 md:flex w-max">
         <NavigationMenu>
           <NavigationMenuList className="gap-4">
-            {links?.map((link) => (
-              <NavigationMenuItem key={`link-${genRandomID()}`}>
-                {link.subLinks ? (
-                  <NavigationMenuTrigger
-                    className={buttonVariants({
-                      variant: "link",
-                      className:
-                        "bg-inherit active:bg-indigo-200 hover:bg-indigo-200",
-                    })}
-                  >
-                    {link.title}
-                  </NavigationMenuTrigger>
-                ) : (
-                  <Link href={link.href} legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={buttonVariants({
-                        variant: "outline",
-                        className:
-                          "bg-inherit border-current active:bg-indigo-200 hover:bg-indigo-200",
-                      })}
-                    >
-                      {link.title}
-                    </NavigationMenuLink>
-                  </Link>
-                )}
-                <NavigationMenuContent>
-                  <div className="grid grid-cols-1 gap-2 p-6 w-[400px] ">
-                    {link.subLinks?.map((sublink) => (
-                      <ListItem
-                        key={`sublink-${genRandomID()}`}
-                        href={sublink.href}
-                        title={sublink.title}
+            {navItems.map((navItem) => {
+              if (navItem.subLinks) {
+                return (
+                  <NavigationMenuItem key={navItem.href}>
+                    <NavigationMenuTrigger>
+                      {navItem.title}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-4 p-6 grid-cols-1 lg:grid-cols-[.75fr_2fr] w-[350px] lg:w-[700px]">
+                        <li className="row-span-3">
+                          <NavigationMenuLink asChild>
+                            <a
+                              className="flex flex-col justify-end w-full h-full p-6 no-underline border rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
+                              href="/"
+                            >
+                              <Icons.logo className="w-6 h-6" />
+                              <div className="mt-4 mb-2 text-lg font-medium">
+                                {navItem.title}
+                              </div>
+                              <p className="text-sm leading-tight text-muted-foreground">
+                                {navItem.description}
+                              </p>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                        <li className="row-span-3">
+                          <ul className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-2 ">
+                            {navItem.subLinks.map((subLink) => (
+                              <ListItem
+                                key={subLink.title}
+                                title={subLink.title}
+                                href={subLink.href}
+                              >
+                                {subLink.description}
+                              </ListItem>
+                            ))}
+                          </ul>
+                        </li>
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                );
+              } else {
+                return (
+                  <NavigationMenuItem key={navItem.href}>
+                    <Link href={navItem.href} legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
                       >
-                        {sublink.description}
-                      </ListItem>
-                    ))}
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ))}
+                        {navItem.title}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                );
+              }
+            })}
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -114,7 +132,7 @@ const Navbar: FC<Props> = ({ links = [] }) => {
                 <XIcon />
               </Button>
             </div>
-            {links?.map((link) => {
+            {navItems?.map((link) => {
               if (link.subLinks) {
                 return (
                   <div

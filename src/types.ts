@@ -18,19 +18,15 @@ export interface LinkType {
   description?: string;
 }
 
-export type INavLink =
-  | {
-      title: string;
-      href: string;
-      icon?: ReactNode;
-      subLinks: LinkType[];
-    }
-  | {
-      title: string;
-      href: string;
-      icon?: ReactNode;
-      subLinks?: never;
-    };
+export type INavLink = LinkType &
+  (
+    | {
+        subLinks: LinkType[];
+      }
+    | {
+        subLinks?: never;
+      }
+  );
 
 export interface IAppSetting extends LinkType {
   variant: VariantType;
