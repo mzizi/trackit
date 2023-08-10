@@ -79,10 +79,15 @@ export const appLinks: INavLink[] = [
     ],
   },
   {
-    title: "Products",
+    title: "Supplies",
     icon: <StoreIcon />,
-    href: "/products",
+    href: "/supplies",
     subLinks: [
+      {
+        title: "Products",
+        icon: <ListIcon />,
+        href: "/products",
+      },
       {
         title: "Categories",
         icon: <TagsIcon />,

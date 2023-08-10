@@ -22,10 +22,9 @@ export default async function DashboardLayout({
     },
   });
 
-  return (
-    <>
-      {!store && <ModalProvider />}
-      {children}
-    </>
-  );
+  if (!store) {
+    return <ModalProvider />;
+  }
+
+  return <>{children}</>;
 }
